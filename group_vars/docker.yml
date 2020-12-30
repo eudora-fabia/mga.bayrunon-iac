@@ -1,6 +1,6 @@
 ---
 # flag to install or skip docker module installation and configuration
-install_docker: true
+install_docker: false
 
 # docker
 docker__channel: ["stable"]
