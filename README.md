@@ -1,3 +1,13 @@
+# Vagrant Getting Started
+
+cd to directory
+
+Create .vault_pass file with content `secretpassword` - this is the password to group_vars/vault.yml
+
+vagrant up
+
+- this will run `ansible` and `live` Ubuntu 18.04LTS servers
+
 # Perfect Linux machine setup with Ansible
 
 In 2020, having a Linux IaaS machine configured and setup should be easy and fast: after all, it's the basic task anybody has to do in order to start working on more-meaningful and productive activities.
