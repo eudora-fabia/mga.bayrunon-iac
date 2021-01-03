@@ -20,19 +20,15 @@
       tags: user
     - role: ssh
       tags: ssh
-    - role: nickjj.docker
-      when: install_docker == true
-      tags: docker
-    - role: docker
-      when: install_docker == true
-      tags: docker
     - role: jnv.debian-backports
-      tags: common
-    - role: ansible-monit
       tags: common
     - role: jnv.unattended-upgrades
       tags: common
-    - role: networking
-      tags: networking
-    - role: reboot
-      tags: reboot
+    - geerlingguy.apache
+    - geerlingguy.php-versions
+    - geerlingguy.php
+    - geerlingguy.apache-php-fpm
+    - geerlingguy.certbot
+    - geerlingguy.mailhog
+    - role: ansible-monit
+      tags: common

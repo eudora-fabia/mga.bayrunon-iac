@@ -12,9 +12,9 @@ Vagrant.configure("2") do |config|
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
   config.vm.box_check_update = false
-  
+
   live_server_ip = "192.168.33.20"
-  
+
   config.vm.define "live" do |m|
 	m.vm.hostname = "live"
 	m.vm.network "private_network", ip: live_server_ip
@@ -23,14 +23,15 @@ Vagrant.configure("2") do |config|
 	m.vm.provision :shell, :inline =>"
 	 echo 'Updating /etc/hosts'
 	 echo '192.168.33.10 ansible' | sudo tee -a /etc/hosts
-	 
+	 echo '127.0.0.1 bayrunon.jimbalatero.com' | sudo tee -a /etc/hosts
+
 	 echo 'Updating /etc/ssh/sshd_config to allow password authentication'
 	 sudo sed -i 's|PasswordAuthentication no|PasswordAuthentication yes|' /etc/ssh/sshd_config
 	 sudo systemctl restart sshd
     ", privileged: false
   end
-  
-  
+
+
   config.vm.define "ansible" do |m|
 	m.vm.hostname = "ansible"
 	m.vm.network "private_network", ip: "192.168.33.10"
@@ -38,24 +39,24 @@ Vagrant.configure("2") do |config|
 	m.vm.provision "file", source: ".vault_pass", destination: "/home/vagrant/.vault_pass"
 	m.vm.provision :shell, :inline =>"
 	 sudo chmod 600 /home/vagrant/.vault_pass
-	
+
 	 echo 'Updating /etc/hosts'
 	 echo '#{live_server_ip} live' | sudo tee -a /etc/hosts
-	 
+
 	 echo 'Generating SSH Key'
 	 ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
-	 
+
 	 echo 'Generating SSH Config'
 	 echo 'StrictHostKeyChecking no' >> ~/.ssh/config
 	 chmod -R 600 /home/vagrant/.ssh/config
-	 
+
 	 echo 'Installing sshpass'
 	 sudo apt -y update
 	 sudo apt -y install sshpass
-	 
+
 	 echo 'Copying SSH Key to Live'
 	 sshpass -p 'vagrant' ssh-copy-id live
-	 
+
 	 echo 'Installing ansible'
 	 sudo apt-add-repository -y ppa:ansible/ansible
 	 sudo apt install -y ansible python-pip virtualenv

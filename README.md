@@ -8,6 +8,17 @@ vagrant up
 
 - this will run `ansible` and `live` Ubuntu 18.04LTS servers
 
+To manually run ansible-playbook, do this in `ansible` server
+
+`cd /vagrant`
+
+`sudo ansible-playbook -i hosts provision.yml --vault-password-file ~/.vault_pass`
+
+Note:
+
+* You cannot access `live` via `vagrant ssh live` because of disabled password auth. You need to go through `vagrant ssh ansible` first, and then do `ssh live`
+* `sudo env EDITOR=nano ansible-vault edit group_vars/vault.yml`
+
 # Perfect Linux machine setup with Ansible
 
 In 2020, having a Linux IaaS machine configured and setup should be easy and fast: after all, it's the basic task anybody has to do in order to start working on more-meaningful and productive activities.
