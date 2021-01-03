@@ -1,6 +1,6 @@
 ---
 # general settings
-default_username: ansible
+default_username: vagrant
 dot_forward_email: hello@jimbalatero.com
 private_key: .ssh/id_rsa
 public_key: .ssh/id_rsa.pub

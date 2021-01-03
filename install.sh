@@ -47,7 +47,7 @@ while getopts ":hDH:p:" opt; do
 done
 shift $((OPTIND -1))
 
-virtualenv -q -p $(which python3) venv
+virtualenv -q -p $(which python3) venv --always-copy
 source venv/bin/activate
 
 # install local requirements for ansible

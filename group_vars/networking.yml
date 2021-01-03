@@ -7,7 +7,9 @@ docker_overlay_ips: "172.0.0.0/8"
 ufw_rules:
   - {rule: allow, port: 22, src: "{{local_lan}}", proto: tcp, direction: "in"}
   - {rule: allow, port: 22, src: "{{docker_overlay_ips}}", proto: tcp, direction: "in"}
+  - {rule: allow, port: 2812, src: "0.0.0.0/0", proto: tcp, direction: "in"}
   # - {rule: allow, port: 80, src: "0.0.0.0/0", proto: tcp, direction: "in"}
+  
   # - {rule: allow, port: 443, src: "0.0.0.0/0", proto: tcp, direction: "in"}
 
 # network configuration for our server

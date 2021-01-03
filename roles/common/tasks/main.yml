@@ -30,20 +30,20 @@
     line: "compress"
     state: present
 
-# - name: Send logcheck results to right email address
-#   lineinfile:
-#     dest: /etc/logcheck/logcheck.conf
-#     regexp: "^#?SENDMAILTO="
-#     line: "SENDMAILTO=\"{{dot_forward_email}}\""
-#     state: present
+- name: Send logcheck results to right email address
+  lineinfile:
+    dest: /etc/logcheck/logcheck.conf
+    regexp: "^#?SENDMAILTO="
+    line: "SENDMAILTO=\"{{dot_forward_email}}\""
+    state: present
 
-# - name: Copy local logcheck ignore rules
-#   copy:
-#     src: templates/local-rules
-#     dest: /etc/logcheck/ignore.d.server/local-rules
-#     owner: root
-#     group: logcheck
-#     mode: u=rw,g=r,o=r
+- name: Copy local logcheck ignore rules
+  copy:
+    src: templates/local-rules
+    dest: /etc/logcheck/ignore.d.server/local-rules
+    owner: root
+    group: logcheck
+    mode: u=rw,g=r,o=r
 
 - name: Configure timezone
   timezone:

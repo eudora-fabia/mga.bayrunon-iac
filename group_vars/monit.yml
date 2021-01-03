@@ -1,12 +1,13 @@
 ---
 # monit
 config_monit: true
-monit_enable_email_notifications: false
+monit_enable_email_notifications: true
 monit_email_to: "{{dot_forward_email}}"
-monit_enable_web_server: false
+monit_enable_web_server: true
 monit_web_server_allow_list:
+  - 192.168.0.0/16
   - localhost
-monit_web_server_local_only: true
+monit_web_server_local_only: false
 monit_monitor_services:
   - name: "cron"
     monitored: true
