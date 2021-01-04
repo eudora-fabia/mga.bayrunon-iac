@@ -6,6 +6,8 @@ local_lan: "192.168.0.0/16"
 # ufw rules
 ufw_rules:
   - {rule: allow, port: 22, src: "{{local_lan}}", proto: tcp, direction: "in"}
+  # s01cloudcone.jimbalatero.com
+  - {rule: allow, port: 22, src: "173.82.245.111", proto: tcp, direction: "in"}
   # monit
   - {rule: allow, port: 2812, src: "0.0.0.0/0", proto: tcp, direction: "in"}
   # http
