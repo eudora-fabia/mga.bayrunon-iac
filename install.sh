@@ -63,10 +63,6 @@ else
   export ANSIBLE_STDOUT_CALLBACK="skippy"
 fi
 
-# create hosts file
-echo "[prod]" > hosts
-echo "${hostname}" >> hosts
-
 # run ansible
 if [ -z $password_file ] ; then
     ansible-playbook -i hosts provision.yml --vault-id @prompt
