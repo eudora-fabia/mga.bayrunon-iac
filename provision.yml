@@ -7,6 +7,8 @@
     - group_vars/monit.yml
     - group_vars/networking.yml
     - group_vars/vault.yml
+    - group_vars/lamp-server.yml
+    - group_vars/mysql.yml
   user: "{{default_username}}"  # run whole script with default user
   become: yes
   roles:  # order is not random!
@@ -24,11 +26,34 @@
       tags: common
     - role: jnv.unattended-upgrades
       tags: common
-    - geerlingguy.apache
-    - geerlingguy.php-versions
-    - geerlingguy.php
-    - geerlingguy.apache-php-fpm
-    - geerlingguy.certbot
-    - geerlingguy.mailhog
+    - role: geerlingguy.apache
+      tags: lamp-server
+    - role: geerlingguy.php-versions
+      tags: lamp-server
+    - role: geerlingguy.php
+      tags: lamp-server
+    - role: geerlingguy.php-xdebug
+      tags: lamp-server
+    - role: geerlingguy.php-mysql
+      tags: lamp-server
+    - role: geerlingguy.php-redis
+      tags: lamp-server
+    - role: geerlingguy.php-pecl
+      tags: lamp-server
+    - role: geerlingguy.apache-php-fpm
+      tags: lamp-server
+    - role: geerlingguy.mysql
+      tags: lamp-server
+      become: yes
+    - role: geerlingguy.composer
+      tags: lamp-server
+    - role: geerlingguy.phpmyadmin
+      tags: lamp-server
+    - role: geerlingguy.redis
+      tags: redis
+    - role: geerlingguy.certbot
+      tags: certbot
+    - role: geerlingguy.mailhog
+      tags: for-development
     - role: ansible-monit
       tags: common

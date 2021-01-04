@@ -1,0 +1,12 @@
+---
+mysql_root_username: admin
+mysql_root_password: root
+
+phpmyadmin_mysql_user: "{{ mysql_root_username }}"
+phpmyadmin_mysql_password: "{{ mysql_root_password }}"
+
+mysql_slow_query_log_enabled: true
+mysql_databases:
+   - name: bayrunon
+     collation: utf8_general_ci
+     encoding: utf8

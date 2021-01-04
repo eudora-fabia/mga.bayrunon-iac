@@ -14,6 +14,10 @@ To manually run ansible-playbook, do this in `ansible` server
 
 `sudo ansible-playbook -i hosts provision.yml --vault-password-file ~/.vault_pass`
 
+To run only specific tags:
+
+`sudo ansible-playbook -i hosts provision.yml --vault-password-file ~/.vault_pass --tags "lamp-server"`
+
 Note:
 
 * You cannot access `live` via `vagrant ssh live` because of disabled password auth. You need to go through `vagrant ssh ansible` first, and then do `ssh live`

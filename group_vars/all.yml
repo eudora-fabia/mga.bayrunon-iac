@@ -28,18 +28,3 @@ fail2ban_services:
     port: ssh
     filter: sshd
     logpath: /var/log/auth.log
-
-php_version: '7.4'
-php_enable_php_fpm: true
-php_date_timezone: UTC
-apache_remove_default_vhost: true
-apache_vhosts:
-  - servername: "bayrunon.jimbalatero.com"
-    documentroot: "/var/www/html"
-
-certbot_create_if_missing: true
-certbot_admin_email: "{{dot_forward_email}}"
-certbot_create_standalone_stop_services:
-  - apache
-
-mailhog_version: 1.0.1

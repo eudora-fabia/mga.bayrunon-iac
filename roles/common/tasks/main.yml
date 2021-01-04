@@ -17,7 +17,7 @@
     mode: "0755"
     owner: root
     group: root
-  
+
 - name: Enable dm_crypt module
   modprobe:
     name: dm_crypt
