@@ -18,6 +18,45 @@ To run only specific tags:
 
 `sudo ansible-playbook -i hosts provision.yml --vault-password-file ~/.vault_pass --tags "lamp-server"`
 
+To check exim4 logs in `live`
+
+`sudo eximstats /var/log/exim4/mainlog`
+
+List email queue
+
+`sudo mailq`
+
+Remove all email queue
+
+`sudo exim -bp | awk '/^ *[0-9]+[mhd]/{print "exim -Mrm " $3}' | sudo bash`
+
+To send test email
+
+`echo "This is test mail from my machine." | mail -s Testing hello@jimbalatero.com`
+
+cd to user home
+
+```bash
+cd ~
+git clone git@github.com:eudora-fabia/mga.bayrunon-iac.git
+cd mga.bayrunon-iac
+echo 'secretpassword' > .vault_pass
+sudo chmod 600 .vault_pass
+*create hosts file - see below*
+ssh-copy-id root@s02cloudcone.jimbalatero.com
+ansible all -i hosts -m ping #should return SUCCESS
+sudo bash install.sh -H s02cloudcone.jimbalatero.com -p .vault_pass
+```
+
+hosts file
+
+```
+[prod]
+s02cloudcone.jimbalatero.com ansible_ssh_user=root
+```
+
+
+
 Note:
 
 * You cannot access `live` via `vagrant ssh live` because of disabled password auth. You need to go through `vagrant ssh ansible` first, and then do `ssh live`

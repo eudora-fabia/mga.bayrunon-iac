@@ -22,7 +22,7 @@
       tags: user
     - role: ssh
       tags: ssh
-    - role: jnv.debian-backports
+    - role: jgeusebroek.backports
       tags: common
     - role: jnv.unattended-upgrades
       tags: common
