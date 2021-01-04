@@ -1,7 +1,4 @@
 ---
-mysql_root_username: admin
-mysql_root_password: root
-
 phpmyadmin_mysql_user: "{{ mysql_root_username }}"
 phpmyadmin_mysql_password: "{{ mysql_root_password }}"
 
@@ -10,7 +7,8 @@ mysql_databases:
    - name: bayrunon
      collation: utf8_general_ci
      encoding: utf8
-mysql_packages:
-  - mariadb-client
-  - mariadb-server
-  - python-mysqldb
+mysql_users:
+  - name: bayrunon
+    host: "%"
+    password: similarly-secure-password
+    priv: "bayrunon.*:ALL"

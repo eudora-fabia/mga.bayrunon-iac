@@ -43,7 +43,7 @@
     - role: geerlingguy.apache-php-fpm
       tags: lamp-server
     - role: geerlingguy.mysql
-      tags: lamp-server
+      tags: lamp-server-db
       become: yes
     - role: geerlingguy.composer
       tags: lamp-server

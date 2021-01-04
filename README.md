@@ -34,7 +34,7 @@ To send test email
 
 `echo "This is test mail from my machine." | mail -s Testing hello@jimbalatero.com`
 
-cd to user home
+Actual live servers
 
 ```bash
 cd ~
