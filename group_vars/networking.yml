@@ -6,7 +6,9 @@ local_lan: "192.168.0.0/16"
 # ufw rules
 ufw_rules:
   - {rule: allow, port: 22, src: "{{local_lan}}", proto: tcp, direction: "in"}
-  - {rule: allow, port: 22, src: "{{control_node_ip}}", proto: tcp, direction: "in"}
+  # - {rule: allow, port: 22, src: "{{control_node_ip}}", proto: tcp, direction: "in"}
+  # For now, allow port 22 for all.
+  - {rule: allow, port: 22, src: "0.0.0.0/0", proto: tcp, direction: "in"}
   # mysql
   - { rule: allow, port: 3306, src: "0.0.0.0/0", proto: tcp, direction: "in" }
   # monit
