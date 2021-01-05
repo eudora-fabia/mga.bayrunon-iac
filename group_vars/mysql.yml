@@ -4,9 +4,9 @@ phpmyadmin_mysql_password: "{{ mysql_root_password }}"
 
 mysql_slow_query_log_enabled: true
 mysql_databases:
-   - name: bayrunon
-     collation: utf8_general_ci
-     encoding: utf8
+  - name: bayrunon
+    collation: utf8_general_ci
+    encoding: utf8
 mysql_users:
   - name: bayrunon
     host: "%"
