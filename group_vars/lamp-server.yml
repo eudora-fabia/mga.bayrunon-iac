@@ -5,8 +5,15 @@ php_date_timezone: UTC
 apache_remove_default_vhost: true
 apache_vhosts:
   - servername: "bayrunon.jimbalatero.com"
+    serveradmin: "{{dot_forward_email}}"
     documentroot: "/var/www/html"
-
+apache_vhosts_ssl:
+  - servername: "bayrunon.jimbalatero.com"
+    documentroot: "/var/www/html"
+    serveradmin: "{{dot_forward_email}}"
+    certificate_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/fullchain.pem"
+    certificate_key_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/privkey.pem"
+    certificate_chain_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/chain.pem"
 certbot_create_if_missing: true
 certbot_admin_email: "{{dot_forward_email}}"
 certbot_create_standalone_stop_services:
