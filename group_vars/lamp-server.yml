@@ -11,5 +11,9 @@ certbot_create_if_missing: true
 certbot_admin_email: "{{dot_forward_email}}"
 certbot_create_standalone_stop_services:
   - apache
+certbot_certs:
+  - email: "{{dot_forward_email}}"
+    domains:
+      - bayrunon.jimbalatero.com
 
 mailhog_version: 1.0.1
