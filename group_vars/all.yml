@@ -28,3 +28,7 @@ fail2ban_services:
     port: ssh
     filter: sshd
     logpath: /var/log/auth.log
+
+# backports
+# For some reason, https does not work
+backports_uri: http://archive.ubuntu.com/ubuntu
