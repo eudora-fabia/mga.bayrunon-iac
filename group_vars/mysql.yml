@@ -12,3 +12,5 @@ mysql_users:
     host: "%"
     password: similarly-secure-password
     priv: "bayrunon.*:ALL"
+
+mysql_root_password_update: true
