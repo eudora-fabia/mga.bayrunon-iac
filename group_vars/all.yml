@@ -21,8 +21,14 @@ unattended_automatic_reboot_time: "03:00"
 unattended_update_days: "Sat"
 unattended_clean_interval: 7
 
+control_node_ip: "{{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[0] }}"
+
 # fail2ban
 fail2ban_loglevel: INFO
+fail2ban_destemail: "{{dot_forward_email}}"
+# Ignore the control node ip
+fail2ban_ignoreip: "127.0.0.1/8 {{control_node_ip}}"
+fail2ban_mta: mail
 fail2ban_services:
   - name: ssh
     port: ssh
