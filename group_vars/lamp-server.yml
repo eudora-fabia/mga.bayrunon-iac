@@ -14,6 +14,23 @@ apache_vhosts_ssl:
     certificate_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/fullchain.pem"
     certificate_key_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/privkey.pem"
     certificate_chain_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/chain.pem"
+    extra_parameters: |
+      <Location "/server-status">
+          SetHandler server-status
+          Require host bayrunon.jimbalatero.com
+      </Location>
+
+      <Location "/server-info">
+          SetHandler server-info
+          Require host bayrunon.jimbalatero.com
+      </Location>
+
+apache_mods_enabled:
+    - rewrite.load
+    - ssl.load
+    - info.load
+    - status.load
+
 certbot_create_if_missing: true
 certbot_admin_email: "{{dot_forward_email}}"
 certbot_create_standalone_stop_services:
