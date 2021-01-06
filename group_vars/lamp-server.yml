@@ -13,7 +13,7 @@ apache_vhosts:
     documentroot: "/usr/share/phpmyadmin"
 apache_vhosts_ssl:
   - servername: "bayrunon.jimbalatero.com"
-    documentroot: "/var/www/bayrunon.jimbalatero.com/html"
+    documentroot: "/var/www/bayrunon.jimbalatero.com/html/public"
     serveradmin: "{{dot_forward_email}}"
     certificate_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/fullchain.pem"
     certificate_key_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/privkey.pem"
