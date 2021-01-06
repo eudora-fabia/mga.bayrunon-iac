@@ -15,16 +15,16 @@
       tags: fail2ban
     - role: common
       tags: common
+    - role: jnv.debian-backports
+      tags: common
+    - role: jnv.unattended-upgrades
+      tags: common
     - role: ufw
       tags: ufw
     - role: user
       tags: user
     - role: ssh
       tags: ssh
-    - role: jnv.debian-backports
-      tags: common
-    - role: jnv.unattended-upgrades
-      tags: common
     - role: geerlingguy.apache
       tags: lamp-server
     - role: geerlingguy.php-versions
@@ -54,4 +54,4 @@
     - role: geerlingguy.mailhog
       tags: for-development
     - role: ansible-monit
-      tags: common
+      tags: monit
