@@ -55,7 +55,9 @@ hosts file
 s02cloudcone.jimbalatero.com ansible_ssh_user=root
 ```
 
+# Random port generator
 
+`curl -sSL https://git.io/v7Hch | bash`
 
 Note:
 
