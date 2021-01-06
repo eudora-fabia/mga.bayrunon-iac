@@ -16,8 +16,8 @@ root_password: "{{lookup('password', '/dev/null length=15 chars=ascii_letters,di
 
 # unattended packages install configuration
 unattended_mail: "{{dot_forward_email}}"
+unattended_automatic_reboot: false
 unattended_remove_unused_dependencies: true
-unattended_automatic_reboot_time: "03:00"
 unattended_update_days: "Sat"
 unattended_clean_interval: 7
 
