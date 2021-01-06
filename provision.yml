@@ -42,6 +42,8 @@
       tags: lamp-server
     - role: geerlingguy.apache-php-fpm
       tags: lamp-server
+    - role: geerlingguy.certbot
+      tags: certbot
     - role: geerlingguy.composer
       tags: lamp-server
     - role: geerlingguy.mysql
@@ -51,8 +53,6 @@
       tags: lamp-server-db
     - role: geerlingguy.redis
       tags: redis
-    - role: geerlingguy.certbot
-      tags: certbot
     - role: geerlingguy.mailhog
       tags: for-development
     - role: ansible-monit
