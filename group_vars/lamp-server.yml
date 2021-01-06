@@ -7,7 +7,7 @@ apache_remove_default_vhost: true
 apache_vhosts:
   - servername: "bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
-    documentroot: "/var/www/bayrunon.jimbalatero.com/html"
+    documentroot: "/var/www/bayrunon.jimbalatero.com/html/public"
   - servername: "phpmyadmin-bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
     documentroot: "/usr/share/phpmyadmin"
@@ -65,6 +65,8 @@ certbot_certs:
   - email: "{{dot_forward_email}}"
     domains:
       - bayrunon.jimbalatero.com
+  - email: "{{dot_forward_email}}"
+    domains:
       - phpmyadmin-bayrunon.jimbalatero.com
 
 mailhog_version: 1.0.1
