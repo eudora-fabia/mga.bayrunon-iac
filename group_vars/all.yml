@@ -38,3 +38,6 @@ fail2ban_services:
 # backports
 # For some reason, https does not work
 backports_uri: http://archive.ubuntu.com/ubuntu
+
+# flag to install or skip docker module installation and configuration
+install_docker: false
