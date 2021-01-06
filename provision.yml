@@ -48,7 +48,6 @@
       tags: lamp-server
     - role: geerlingguy.mysql
       tags: lamp-server-db
-      become: yes
     - role: geerlingguy.phpmyadmin
       tags: lamp-server-db
     - role: geerlingguy.redis
