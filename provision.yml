@@ -24,32 +24,32 @@
     - role: ssh
       tags: ssh
     - role: geerlingguy.apache
-      tags: lamp-server
+      tags: [ lamp-sever, apache ]
     - role: geerlingguy.php-versions
-      tags: lamp-server
+      tags: [ lamp-sever, php ]
     - role: geerlingguy.php
-      tags: lamp-server
+      tags: [ lamp-sever, php ]
     - role: geerlingguy.php-xdebug
-      tags: lamp-server
+      tags: [ lamp-sever, php ]
     - role: geerlingguy.php-mysql
-      tags: lamp-server
+      tags: [ lamp-sever, php ]
     - role: geerlingguy.php-redis
-      tags: lamp-server
+      tags: [ lamp-sever, php ]
     - role: geerlingguy.php-pecl
-      tags: lamp-server
+      tags: [ lamp-sever, php ]
     - role: geerlingguy.apache-php-fpm
-      tags: lamp-server
-    - role: geerlingguy.certbot
-      tags: certbot
+      tags: [ lamp-sever, php ]
     - role: geerlingguy.composer
-      tags: lamp-server
+      tags: [ lamp-sever, php ]
+    - role: geerlingguy.certbot
+      tags: [ lamp-sever, certbot ]
     - role: geerlingguy.mysql
-      tags: lamp-server-db
+      tags: [ lamp-sever, db ]
     - role: geerlingguy.phpmyadmin
-      tags: lamp-server-db
+      tags: [ lamp-sever, db ]
     - role: geerlingguy.redis
       tags: redis
     - role: geerlingguy.mailhog
-      tags: for-development
+      tags: mailhog
     - role: ansible-monit
       tags: monit
