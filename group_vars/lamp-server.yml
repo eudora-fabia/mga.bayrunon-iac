@@ -7,13 +7,13 @@ apache_remove_default_vhost: true
 apache_vhosts:
   - servername: "bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
-    documentroot: "/var/www/bayrunon.jimbalatero.com/html/public"
+    documentroot: "/var/www/bayrunon.jimbalatero.com/current/public"
   - servername: "phpmyadmin-bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
     documentroot: "/usr/share/phpmyadmin"
 apache_vhosts_ssl:
   - servername: "bayrunon.jimbalatero.com"
-    documentroot: "/var/www/bayrunon.jimbalatero.com/html/public"
+    documentroot: "/var/www/bayrunon.jimbalatero.com/current/public"
     serveradmin: "{{dot_forward_email}}"
     certificate_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/fullchain.pem"
     certificate_key_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/privkey.pem"
