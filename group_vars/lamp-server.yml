@@ -35,7 +35,7 @@ apache_mods_enabled:
 certbot_create_if_missing: true
 certbot_admin_email: "{{dot_forward_email}}"
 certbot_create_standalone_stop_services:
-  - apache
+  - apache2
 certbot_certs:
   - email: "{{dot_forward_email}}"
     domains:
