@@ -1,7 +1,6 @@
 ---
 # Local LAN IP-range addresses
 local_lan: "192.168.0.0/16"
-#docker_overlay_ips: "172.0.0.0/8"
 
 # ufw rules
 ufw_rules:
