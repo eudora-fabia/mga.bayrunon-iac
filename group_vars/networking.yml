@@ -20,7 +20,7 @@ ufw_rules:
   # mailhog
   - {rule: allow, port: 8025, src: "0.0.0.0/0", proto: tcp, direction: "in"}
   # smtp2go
-  - {rule: allow, port: 2525, proto: tcp, direction: "out"}
+  - {rule: allow, port: 2525, src: "any", proto: tcp, direction: "out"}
 
 # network configuration for our server
 interfaces_template: "interfaces-dhcp-server.j2"
