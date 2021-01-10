@@ -8,9 +8,19 @@ apache_vhosts:
   - servername: "bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
     documentroot: "/var/www/bayrunon.jimbalatero.com/current/public"
+    extra_parameters: |
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/bayrunon.jimbalatero.com/current/public"
+      ErrorLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-error.log
+      CustomLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-access.log combined
+
   - servername: "phpmyadmin-bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
     documentroot: "/usr/share/phpmyadmin"
+    extra_parameters: |
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/usr/share/phpmyadmin"
+      ErrorLog ${APACHE_LOG_DIR}/phpmyadmin-bayrunon.jimbalatero.com-error.log
+      CustomLog ${APACHE_LOG_DIR}/phpmyadmin-bayrunon.jimbalatero.com-access.log combined
+
 apache_vhosts_ssl:
   - servername: "bayrunon.jimbalatero.com"
     documentroot: "/var/www/bayrunon.jimbalatero.com/current/public"
