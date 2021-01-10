@@ -19,3 +19,5 @@
 - src: geerlingguy.mailhog
 - src: geerlingguy.phpmyadmin
 - src: geerlingguy.nodejs
+- src: ansistrano.deploy
+- src: ansistrano.rollback
