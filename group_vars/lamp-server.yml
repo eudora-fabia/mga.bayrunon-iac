@@ -32,15 +32,6 @@ apache_vhosts_ssl:
       ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/bayrunon.jimbalatero.com/current/public"
       ErrorLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-error.log
       CustomLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-access.log combined
-#      <Location "/server-status">
-#          SetHandler server-status
-#          Require host bayrunon.jimbalatero.com
-#      </Location>
-#
-#      <Location "/server-info">
-#          SetHandler server-info
-#          Require host bayrunon.jimbalatero.com
-#      </Location>
   - servername: "phpmyadmin-bayrunon.jimbalatero.com"
     documentroot: "/usr/share/phpmyadmin"
     serveradmin: "{{dot_forward_email}}"
@@ -51,21 +42,10 @@ apache_vhosts_ssl:
       ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/usr/share/phpmyadmin"
       ErrorLog ${APACHE_LOG_DIR}/phpmyadmin-bayrunon.jimbalatero.com-error.log
       CustomLog ${APACHE_LOG_DIR}/phpmyadmin-bayrunon.jimbalatero.com-access.log combined
-#      <Location "/server-status">
-#          SetHandler server-status
-#          Require host bayrunon.jimbalatero.com
-#      </Location>
-#
-#      <Location "/server-info">
-#          SetHandler server-info
-#          Require host bayrunon.jimbalatero.com
-#      </Location>
 
 apache_mods_enabled:
     - rewrite.load
     - ssl.load
-#    - info.load
-#    - status.load
 
 certbot_create_if_missing: true
 certbot_admin_email: "{{dot_forward_email}}"
