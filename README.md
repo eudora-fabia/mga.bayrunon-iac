@@ -12,11 +12,11 @@ To manually run ansible-playbook, do this in `ansible` server
 
 `cd /vagrant`
 
-`sudo ansible-playbook -i hosts provision.yml --vault-password-file ~/.vault_pass`
+`sudo ansible-playbook -i hosts provision.yml -e env=prod --vault-password-file ~/.vault_pass`
 
 To run only specific tags:
 
-`sudo ansible-playbook -i hosts provision.yml --vault-password-file ~/.vault_pass --tags "lamp-server"`
+`sudo ansible-playbook -i hosts provision.yml -e env=prod --vault-password-file ~/.vault_pass --tags "lamp-server"`
 
 To check exim4 logs in `live`
 
@@ -34,25 +34,40 @@ To send test email
 
 `echo "This is test mail from my machine." | mail -s Testing hello@jimbalatero.com`
 
-Actual live servers
+# In newly rebuilt Cloudcone server - Ubuntu 18.04 LTS, do this first in ctrl node
 
+```shell
+ssh-copy-id root@s02cloudcone.jimbalatero.com
+# it will ask you for root password sent by Cloudcone via Email
+# somewhere in the playbook, the root password will be changed, 
+# so Cloudcone generated password will be invalid anymore.
+
+ansible all -i hosts -m ping #should return SUCCESS
+```
+
+Do this in ansible control node. This assumes, ssh user logged in is sudo password-less.
 ```bash
 cd ~
 git clone git@github.com:eudora-fabia/mga.bayrunon-iac.git
 cd mga.bayrunon-iac
+# Change it with the password
 echo 'secretpassword' > .vault_pass
+# Make sure file is only Read and Writable by the owner
 sudo chmod 600 .vault_pass
-*create hosts file - see below*
+
+# create hosts file
+echo '[prod]' > hosts
+echo 's02cloudcone.jimbalatero.com ansible_ssh_user=root' >> hosts
+
+# ssh copy and test ansible connection
 ssh-copy-id root@s02cloudcone.jimbalatero.com
 ansible all -i hosts -m ping #should return SUCCESS
-sudo bash install.sh -H s02cloudcone.jimbalatero.com -p .vault_pass
-```
 
-hosts file
-
-```
-[prod]
-s02cloudcone.jimbalatero.com ansible_ssh_user=root
+# do this to include installing the requirements
+sudo bash install.sh -H s02cloudcone.jimbalatero.com -p .vault_pass -e env=prod
+# or this, if reqs are already installed
+# ansible-playbook provision.yml
+# For some reason, jnv.debian-backports var: backports_uri doesn't work in all.yml
 ```
 
 # Random port generator
@@ -90,9 +105,9 @@ Please note that some of the parameters provided by this template repo **MUST BE
 
 Customization starts by modifying files in [this folder](/group_vars/). In particular, consider that:
 
-- in [all.yml](/group_vars/all.yml) you must modify the `default_username` variable
-- in [all.yml](/group_vars/all.yml) you must modify the `dot_forward_email` variable
-- the [vault.yml](/group_vars/vault.yml) is an [ansible-vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html) encrypted file (default password: `secretpassword`) which you must customize with your SMTP parameters
+- in [all.yml](/group_vars/all/all.yml) you must modify the `default_username` variable
+- in [all.yml](/group_vars/all/all.yml) you must modify the `dot_forward_email` variable
+- the [vault.yml](/group_vars/prod/vault.yml) is an [ansible-vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html) encrypted file (default password: `secretpassword`) which you must customize with your SMTP parameters
 
 ## Final notes
 
