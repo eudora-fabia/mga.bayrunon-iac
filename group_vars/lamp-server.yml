@@ -19,7 +19,7 @@ apache_vhosts_ssl:
     certificate_key_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/privkey.pem"
     certificate_chain_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/chain.pem"
     extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/bayrunon.jimbalatero.com/html"
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/bayrunon.jimbalatero.com/current/public"
       ErrorLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-error.log
       CustomLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-access.log combined
 #      <Location "/server-status">
