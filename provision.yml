@@ -26,15 +26,8 @@
       tags: [ lamp-sever, apache ]
     - role: geerlingguy.certbot
       tags: [ lamp-sever, apache, certbot ]
-
-    - name: Install Web-App
-      with_items: "{{ web_apps }}"
-      tags: [ lamp-sever, apache, web-app ]
-      include_role:
-        name: web_app
-      loop_control:
-        loop_var: app
-
+    - role: web_app
+      tags: [ lamp-sever, apache, web_app ]
     - role: geerlingguy.php-versions
       tags: [ lamp-sever, php ]
     - role: geerlingguy.php
