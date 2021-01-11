@@ -17,7 +17,8 @@ unattended_remove_unused_dependencies: true
 unattended_update_days: "Sat"
 unattended_clean_interval: 7
 
-control_node_ip: "{{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[0] }}"
+# s01cloudcone.jimbalatero.com
+control_node_ip: 173.82.245.111
 
 # fail2ban
 fail2ban_loglevel: INFO
