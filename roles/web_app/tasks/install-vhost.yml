@@ -11,6 +11,8 @@
     mode: '0755'
 
 - name: Add apache vhosts configuration.
+  vars:
+    apache_vhosts_version: 2.4
   template:
     src: "vhosts.conf.j2"
     dest: "/etc/apache2/sites-available/{{ app.servername }}.conf"
