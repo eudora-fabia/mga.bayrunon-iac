@@ -10,8 +10,8 @@ apache_create_vhosts: false # we create our own
 web_apps:
   - servername: "bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
-    documentroot: "/var/www/{{ servername }}/current/public"
-    logs_dir: "/var/www/{{ servername }}/logs"
+    documentroot: "/var/www/bayrunon.jimbalatero.com/current/public"
+    logs_dir: "/var/www/bayrunon.jimbalatero.com/logs"
 
 #  - servername: "phpmyadmin-bayrunon.jimbalatero.com"
 #    serveradmin: "{{dot_forward_email}}"
