@@ -38,3 +38,6 @@ backports_uri: http://archive.ubuntu.com/ubuntu
 
 # flag to install or skip docker module installation and configuration
 install_docker: false
+
+mysql_slow_query_log_enabled: true
+mysql_root_password_update: true

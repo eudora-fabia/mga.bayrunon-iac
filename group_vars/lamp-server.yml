@@ -1,6 +1,7 @@
 ---
 php_version: '7.4'
 php_mysql_package: "php{{php_version}}-mysql"
+php_fpm_daemon: "php{{php_version}}-fpm"
 php_enable_php_fpm: true
 php_date_timezone: UTC
 apache_remove_default_vhost: true

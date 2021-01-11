@@ -7,7 +7,6 @@
     - group_vars/networking.yml
     - group_vars/vault.yml
     - group_vars/lamp-server.yml
-    - group_vars/mysql.yml
   user: "{{default_username}}"  # run whole script with default user
   become: yes
   roles:  # order is not random!

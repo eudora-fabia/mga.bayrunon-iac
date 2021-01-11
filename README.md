@@ -70,6 +70,18 @@ sudo bash install.sh -H s02cloudcone.jimbalatero.com -p .vault_pass -e env=prod
 # For some reason, jnv.debian-backports var: backports_uri doesn't work in all.yml
 ```
 
+# Prep the server
+
+Login as root in the prod server
+
+Create a user account for Ansible to do its thing through:
+
+```
+useradd -m -d /home/ansible ansible
+adduser ansible sudo
+passwd ansible
+```
+
 # Random port generator
 
 `curl -sSL https://git.io/v7Hch | bash`
