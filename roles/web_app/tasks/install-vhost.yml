@@ -11,9 +11,6 @@
     mode: '0755'
 
 - name: Add apache vhosts configuration.
-  include_vars:
-    file: vhost.yaml
-    name: vhost
   template:
     src: "vhosts.conf.j2"
     dest: "{{ apache_conf_path }}/sites-available/{{ app.servername }}.conf"
