@@ -1,6 +1,6 @@
 ---
 - name: Install Web-Apps
-- include_tasks: install-vhost.yml
+  include_tasks: install-vhost.yml
   with_items: "{{ web_apps }}"
   loop_control:
     loop_var: app
