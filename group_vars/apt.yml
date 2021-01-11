@@ -46,3 +46,4 @@ packages_to_install:
     - glances
     - gnupg
     - exim4
+    - python-certbot-apache # will be needed later by certbot
