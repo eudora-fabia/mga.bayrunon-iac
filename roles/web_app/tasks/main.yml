@@ -1,15 +1,9 @@
 ---
+- name: Include apache vars
+  include_vars: vhost.yml
+
 - name: Install Web-Apps
   include_tasks: install-vhost.yml
   with_items: "{{ web_apps }}"
   loop_control:
     loop_var: app
-
-#- name: Add apache vhosts configuration for {{app.servername}}.
-#  template:
-#    src: "{{ apache_vhosts_template }}"
-#    dest: "{{ apache_conf_path }}/sites-available/{{ app.servername }}.conf"
-#    owner: root
-#    group: root
-#    mode: 0644
-#  notify: restart apache

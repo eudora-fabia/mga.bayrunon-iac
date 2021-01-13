@@ -1,18 +1,5 @@
 ---
-- name: Check if vhost {{ app.servername }} already exists.
-  stat:
-    path: "/etc/apache2/sites-available/{{ app.servername }}.conf"
-  register: app_stat
-
-- name: Create a apache2 logs directory if it does not exist
-  file:
-    path: "{{ app.logs_dir }}/apache2"
-    state: directory
-    mode: '0755'
-
 - name: Add apache vhosts configuration.
-  vars:
-    apache_vhosts_version: 2.4
   template:
     src: "vhosts.conf.j2"
     dest: "/etc/apache2/sites-available/{{ app.servername }}.conf"
@@ -20,4 +7,9 @@
     group: root
     mode: 0644
   notify: restart apache
-  when: not app_stat.stat.exists
+
+- name: Create a apache2 logs directory if it does not exist
+  file:
+    path: "{{ app.logs_dir }}/apache2"
+    state: directory
+    mode: '0755'

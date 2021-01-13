@@ -15,7 +15,7 @@ apache_vhosts:
     serveradmin: "{{dot_forward_email}}"
     documentroot: "{{ app.documentroot }}"
     extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ documentroot }}"
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ app.documentroot }}"
       ErrorLog {{ app.logs_dir }}/apache2/error.log
       CustomLog {{ app.logs_dir }}/apache2/access.log combined
 
