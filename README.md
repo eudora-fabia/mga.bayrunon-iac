@@ -78,9 +78,16 @@ Create a user account for Ansible to do its thing through:
 
 ```
 useradd -m -d /home/ansible ansible
-adduser ansible sudo
 passwd ansible
+echo 'ansible ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/ansible
 ```
+
+# In the control node
+
+```
+# ssh copy and test ansible connection
+ssh-copy-id s02cloudcone.jimbalatero.com
+ansible all -i hosts -m ping #should return SUCCESS
 
 # Random port generator
 
