@@ -23,31 +23,31 @@
     - role: ssh
       tags: ssh
     - role: geerlingguy.apache
-      tags: [ lamp-sever, apache ]
+      tags: [ lamp-server, apache ]
     - role: geerlingguy.php-versions
-      tags: [ lamp-sever, php ]
+      tags: [ lamp-server, php ]
     - role: geerlingguy.php
-      tags: [ lamp-sever, php ]
+      tags: [ lamp-server, php ]
     - role: geerlingguy.php-xdebug
-      tags: [ lamp-sever, php ]
+      tags: [ lamp-server, php ]
     - role: geerlingguy.php-mysql
-      tags: [ lamp-sever, php ]
+      tags: [ lamp-server, php ]
     - role: geerlingguy.php-redis
-      tags: [ lamp-sever, php ]
+      tags: [ lamp-server, php ]
     - role: geerlingguy.php-pecl
-      tags: [ lamp-sever, php ]
+      tags: [ lamp-server, php ]
     - role: geerlingguy.apache-php-fpm
-      tags: [ lamp-sever, php ]
+      tags: [ lamp-server, php ]
     - role: geerlingguy.composer
-      tags: [ lamp-sever, php ]
+      tags: [ lamp-server, php ]
     - role: web-apps-init
-      tags: [ lamp-sever, certbot ]
+      tags: [ lamp-server, certbot ]
     - role: geerlingguy.certbot
-      tags: [ lamp-sever, certbot ]
+      tags: [ lamp-server, certbot ]
     - role: geerlingguy.mysql
-      tags: [ lamp-sever, db ]
+      tags: [ lamp-server, db ]
     - role: geerlingguy.phpmyadmin
-      tags: [ lamp-sever, db ]
+      tags: [ lamp-server, db ]
     - role: geerlingguy.redis
       tags: redis
     - role: geerlingguy.mailhog
