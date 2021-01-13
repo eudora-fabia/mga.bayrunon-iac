@@ -24,6 +24,8 @@
       tags: ssh
     - role: geerlingguy.apache
       tags: [ lamp-sever, apache ]
+    - role: geerlingguy.certbot
+      tags: [ lamp-sever, certbot ]
     - role: geerlingguy.php-versions
       tags: [ lamp-sever, php ]
     - role: geerlingguy.php
@@ -40,8 +42,6 @@
       tags: [ lamp-sever, php ]
     - role: geerlingguy.composer
       tags: [ lamp-sever, php ]
-    - role: geerlingguy.certbot
-      tags: [ lamp-sever, certbot ]
     - role: geerlingguy.mysql
       tags: [ lamp-sever, db ]
     - role: geerlingguy.phpmyadmin
