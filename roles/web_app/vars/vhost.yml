@@ -16,8 +16,8 @@ apache_vhosts:
     documentroot: "{{ app.documentroot }}"
     extra_parameters: |
       ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ app.documentroot }}"
-      ErrorLog {{ app.logs_dir }}/apache2/error.log
-      CustomLog {{ app.logs_dir }}/apache2/access.log combined
+      ErrorLog ${APACHE_LOG_DIR}/{{ app.servername }}-error.log
+      CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access.log combined
 
 apache_vhosts_ssl:
   - servername: "{{ app.servername }}"
@@ -28,5 +28,5 @@ apache_vhosts_ssl:
     certificate_chain_file: "/etc/letsencrypt/live/{{ app.servername }}/chain.pem"
     extra_parameters: |
       ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ documentroot }}"
-      ErrorLog {{ app.logs_dir }}/apache2/error.log
-      CustomLog {{ app.logs_dir }}/apache2/access.log combined
+      ErrorLog ${APACHE_LOG_DIR}/{{ app.servername }}-error.log
+      CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access.log combined
