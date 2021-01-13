@@ -8,8 +8,31 @@
     mode: 0644
   notify: restart apache
 
+- name: Add vhost symlink in sites-enabled.
+  file:
+    src: "/etc/apache2/sites-available/{{ app.servername }}.conf"
+    dest: "/etc/apache2/sites-enabled/{{ app.servername }}.conf"
+    state: link
+    mode: 0644
+  notify: restart apache
+
+- name: Remove default vhost in sites-enabled.
+  file:
+    path: "/etc/apache2/sites-enabled/{{ apache_default_vhost_filename }}"
+    state: absent
+  notify: restart apache
+
 - name: Create a apache2 logs directory if it does not exist
   file:
     path: "{{ app.logs_dir }}/apache2"
     state: directory
     mode: '0755'
+
+- name: Check if certificate already exists.
+  stat:
+    path: /etc/letsencrypt/live/{{ app.servername }}/cert.pem
+  register: letsencrypt_cert
+
+- name: Generate new certificate if one doesn't exist.
+  command: "{{ certbot_create_command }}"
+  when: not letsencrypt_cert.stat.exists
