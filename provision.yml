@@ -24,6 +24,8 @@
       tags: ssh
     - role: geerlingguy.apache
       tags: [ lamp-sever, apache ]
+    - role: web-apps-init
+      tags: [ lamp-sever, certbot ]
     - role: geerlingguy.certbot
       tags: [ lamp-sever, certbot ]
     - role: geerlingguy.php-versions

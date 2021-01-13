@@ -1,0 +1,7 @@
+---
+- name: Make sure DocumentRoot dir exists for {{ vhost.servername }}
+  file:
+    path: "{{ vhost.documentroot }}"
+    group: www-data
+    state: directory
+    mode: '0775'
