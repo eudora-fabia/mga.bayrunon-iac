@@ -93,3 +93,10 @@
     - /etc/fail2ban/jail.local
   notify:
     - restart fail2ban
+
+- name: Send apticron impending updates to right email address
+  lineinfile:
+    dest: /etc/apticron/apticron.conf
+    regexp: "^#?EMAIL="
+    line: "EMAIL=\"{{dot_forward_email}}\""
+    state: present

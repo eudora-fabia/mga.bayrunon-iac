@@ -47,3 +47,4 @@ packages_to_install:
     - gnupg
     - exim4
     - python-certbot-apache # will be needed later by certbot
+    - apticron-systemd
