@@ -82,4 +82,4 @@
 
 - name: Test apache2 config
   command: apache2ctl configtest
-  notify: restart apache
+  notify: reload apache
