@@ -40,3 +40,19 @@
      --email {{ dot_forward_email }}
      -d {{ app.servername }}
   when: not letsencrypt_cert.stat.exists
+
+- name: Cron for Monitoring Daily Referers on Apache
+  cron:
+    name: Cron for Monitoring Daily Referers on Apache
+    job: |
+      tail -10000 /var/log/apache2/{{ app.servername }}-access.log | awk '$11 !~ /google|bing|yahoo|yandex|{{ app.servername }}/' | awk '{print $11}' | tr -d '"' | sort | uniq -c | sort -rn | head -1000 | mail -s "Top 1000 Referers for {{ app.servername }}" {{ dot_forward_email }}
+    special_time: daily
+    state: present
+
+- name: Cron for Monitoring Daily User Agents on Apache
+  cron:
+    name: Cron for Monitoring Daily User Agents on Apache
+    job: |
+      tail -50000 /var/log/apache2/{{ app.servername }}-access.log | awk '{print $12}' | tr -d '"' | sort | uniq -c | sort -rn | head -1000 | mail -s "Top 1000 Agents for {{ app.servername }}" {{ dot_forward_email }}
+    special_time: daily
+    state: present
