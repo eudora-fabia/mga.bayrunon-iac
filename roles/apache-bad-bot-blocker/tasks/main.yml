@@ -64,10 +64,10 @@
 
 # step 6
 - name: INCLUDE THE globalblacklist.conf
-  lineinfile:
-    dest: /etc/apache2/apache2.conf
+  blockinfile:
+    path: /etc/apache2/apache2.conf
     state: present
-    line: |
+    block: |
       # ######################################
       # GLOBAL! deny bad bots and IP addresses
       # ######################################
