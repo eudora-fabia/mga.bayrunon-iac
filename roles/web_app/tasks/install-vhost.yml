@@ -21,14 +21,6 @@
     mode: 0644
   notify: restart apache
 
-- name: Create a apache2 logs directory if it does not exist
-  file:
-    path: "{{ app.logs_dir }}/apache2"
-    owner: ansible
-    group: www-data
-    state: directory
-    mode: '0755'
-
 - name: Create a DocumentRoot directory if it does not exist
   file:
     path: "{{ app.documentroot }}"
