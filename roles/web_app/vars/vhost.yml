@@ -1,0 +1,25 @@
+---
+# these options are from ansible-role-apache
+apache_allow_override: "All"
+apache_options: "-Indexes +FollowSymLinks"
+
+apache_vhosts:
+  - servername: "{{ app.servername }}"
+    serveradmin: "{{dot_forward_email}}"
+    documentroot: "{{ app.documentroot }}"
+    extra_parameters: |
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ app.documentroot }}"
+      ErrorLog ${APACHE_LOG_DIR}/{{ app.servername }}-error.log
+      CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access.log combined
+
+#apache_vhosts_ssl:
+#  - servername: "{{ app.servername }}"
+#    documentroot: "{{ app.documentroot }}"
+#    serveradmin: "{{dot_forward_email}}"
+#    certificate_file: "/etc/letsencrypt/live/{{ app.servername }}/fullchain.pem"
+#    certificate_key_file: "/etc/letsencrypt/live/{{ app.servername }}/privkey.pem"
+#    certificate_chain_file: "/etc/letsencrypt/live/{{ app.servername }}/chain.pem"
+#    extra_parameters: |
+#      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ documentroot }}"
+#      ErrorLog ${APACHE_LOG_DIR}/{{ app.servername }}-error.log
+#      CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access.log combined

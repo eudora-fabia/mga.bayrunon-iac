@@ -6,60 +6,23 @@ php_fpm_daemon: "php{{php_version}}-fpm"
 php_enable_php_fpm: true
 php_date_timezone: UTC
 apache_remove_default_vhost: true
-apache_vhosts:
+apache_create_vhosts: false # we create our own
+
+web_apps:
   - servername: "bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
     documentroot: "/var/www/bayrunon.jimbalatero.com/current/public"
-    extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/bayrunon.jimbalatero.com/current/public"
-      ErrorLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-error.log
-      CustomLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-access.log combined
+    logs_dir: "/var/www/bayrunon.jimbalatero.com/logs"
 
-  - servername: "phpmyadmin-bayrunon.jimbalatero.com"
-    serveradmin: "{{dot_forward_email}}"
-    documentroot: "/usr/share/phpmyadmin"
-    extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/usr/share/phpmyadmin"
-      ErrorLog ${APACHE_LOG_DIR}/phpmyadmin-bayrunon.jimbalatero.com-error.log
-      CustomLog ${APACHE_LOG_DIR}/phpmyadmin-bayrunon.jimbalatero.com-access.log combined
-
-apache_vhosts_ssl:
-  - servername: "bayrunon.jimbalatero.com"
-    documentroot: "/var/www/bayrunon.jimbalatero.com/current/public"
-    serveradmin: "{{dot_forward_email}}"
-    certificate_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/fullchain.pem"
-    certificate_key_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/privkey.pem"
-    certificate_chain_file: "/etc/letsencrypt/live/bayrunon.jimbalatero.com/chain.pem"
-    extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/var/www/bayrunon.jimbalatero.com/current/public"
-      ErrorLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-error.log
-      CustomLog ${APACHE_LOG_DIR}/bayrunon.jimbalatero.com-access.log combined
-  - servername: "phpmyadmin-bayrunon.jimbalatero.com"
-    documentroot: "/usr/share/phpmyadmin"
-    serveradmin: "{{dot_forward_email}}"
-    certificate_file: "/etc/letsencrypt/live/phpmyadmin-bayrunon.jimbalatero.com/fullchain.pem"
-    certificate_key_file: "/etc/letsencrypt/live/phpmyadmin-bayrunon.jimbalatero.com/privkey.pem"
-    certificate_chain_file: "/etc/letsencrypt/live/phpmyadmin-bayrunon.jimbalatero.com/chain.pem"
-    extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000/usr/share/phpmyadmin"
-      ErrorLog ${APACHE_LOG_DIR}/phpmyadmin-bayrunon.jimbalatero.com-error.log
-      CustomLog ${APACHE_LOG_DIR}/phpmyadmin-bayrunon.jimbalatero.com-access.log combined
+#  - servername: "phpmyadmin-bayrunon.jimbalatero.com"
+#    serveradmin: "{{dot_forward_email}}"
+#    documentroot: "/usr/share/phpmyadmin"
 
 apache_mods_enabled:
-    - rewrite.load
-    - ssl.load
+  - rewrite.load
+  - ssl.load
 
-certbot_create_if_missing: true
-certbot_admin_email: "{{dot_forward_email}}"
-certbot_create_standalone_stop_services: [] # default is nginx so we need to empty it
+certbot_create_if_missing: false
 certbot_auto_renew_options: "--apache --quiet --no-self-upgrade"
-certbot_certs:
-  - domains:
-      - bayrunon.jimbalatero.com
-      - phpmyadmin-bayrunon.jimbalatero.com
-certbot_create_command: >-
-  {{ certbot_script }} certonly --apache --noninteractive --agree-tos
-  --email {{ cert_item.email | default(certbot_admin_email) }}
-  -d {{ cert_item.domains | join(',') }}
 
 mailhog_version: 1.0.1

@@ -40,10 +40,10 @@
       tags: [ lamp-server, php ]
     - role: geerlingguy.composer
       tags: [ lamp-server, php ]
-    - role: web-apps-init
-      tags: [ lamp-server, certbot ]
     - role: geerlingguy.certbot
-      tags: [ lamp-server, certbot ]
+      tags: [ lamp-sever, apache, certbot ]
+    - role: web_app
+      tags: [ lamp-sever, apache, web_app ]
     - role: geerlingguy.mysql
       tags: [ lamp-server, db ]
     - role: geerlingguy.phpmyadmin

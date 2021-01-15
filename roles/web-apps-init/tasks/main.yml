@@ -1,6 +1,0 @@
----
-- name: Initial web apps setup
-  include_tasks: setup-web-apps.yml
-  with_items: "{{ apache_vhosts_ssl }}"
-  loop_control:
-    loop_var: vhost

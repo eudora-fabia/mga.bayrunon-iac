@@ -1,0 +1,42 @@
+---
+# if this cname record was not found,
+# then this will automatically stop for error
+- name: Make sure {{ app.servername }} DNS CNAME record exists
+  command: "nslookup -query=cname {{ app.servername }}"
+
+- name: Add apache vhosts configuration.
+  template:
+    src: "vhosts.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ app.servername }}.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart apache
+
+- name: Add vhost symlink in sites-enabled.
+  file:
+    src: "/etc/apache2/sites-available/{{ app.servername }}.conf"
+    dest: "/etc/apache2/sites-enabled/{{ app.servername }}.conf"
+    state: link
+    mode: 0644
+  notify: restart apache
+
+- name: Create a DocumentRoot directory if it does not exist
+  file:
+    path: "{{ app.documentroot }}"
+    owner: ansible
+    group: www-data
+    state: directory
+    mode: '0755'
+
+- name: Check if certificate already exists.
+  stat:
+    path: /etc/letsencrypt/live/{{ app.servername }}/cert.pem
+  register: letsencrypt_cert
+
+- name: Generate new certificate if one doesn't exist.
+  command: >-
+     certbot --apache --noninteractive --agree-tos
+     --email {{ dot_forward_email }}
+     -d {{ app.servername }}
+  when: not letsencrypt_cert.stat.exists

@@ -1,0 +1,30 @@
+{# Set up VirtualHosts #}
+
+{% for vhost in apache_vhosts %}
+<VirtualHost *:80>
+  ServerName {{ vhost.servername }}
+{% if vhost.serveralias is defined %}
+  ServerAlias {{ vhost.serveralias }}
+{% endif %}
+{% if vhost.documentroot is defined %}
+  DocumentRoot "{{ vhost.documentroot }}"
+{% endif %}
+
+{% if vhost.serveradmin is defined %}
+  ServerAdmin {{ vhost.serveradmin }}
+{% endif %}
+{% if vhost.documentroot is defined %}
+  <Directory "{{ vhost.documentroot }}">
+    AllowOverride {{ vhost.allow_override | default(apache_allow_override) }}
+    Options {{ vhost.options | default(apache_options) }}
+    Require all granted
+  </Directory>
+{% endif %}
+
+{% if vhost.extra_parameters is defined %}
+  {{ vhost.extra_parameters }}
+{% endif %}
+
+</VirtualHost>
+
+{% endfor %}

@@ -1,0 +1,20 @@
+---
+- name: Include apache vars
+  include_vars: vhost.yml
+
+- name: Remove default vhost in sites-enabled.
+  file:
+    path: "/etc/apache2/sites-enabled/000-default.conf"
+    state: absent
+  notify: restart apache
+
+- name: Remove default DocumentRoot.
+  file:
+    path: "/var/www/html"
+    state: absent
+
+- name: Install Web-Apps
+  include_tasks: install-vhost.yml
+  with_items: "{{ web_apps }}"
+  loop_control:
+    loop_var: app
