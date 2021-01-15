@@ -1,4 +1,9 @@
 ---
+# if this cname record was not found,
+# then this will automatically stop for error
+- name: Make sure {{ app.servername }} DNS CNAME record exists
+  command: "nslookup -query=cname {{ app.servername }}"
+
 - name: Add apache vhosts configuration.
   template:
     src: "vhosts.conf.j2"
