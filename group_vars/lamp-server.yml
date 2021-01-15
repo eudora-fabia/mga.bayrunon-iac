@@ -12,15 +12,16 @@ web_apps:
   - servername: "bayrunon.jimbalatero.com"
     serveradmin: "{{dot_forward_email}}"
     documentroot: "/var/www/bayrunon.jimbalatero.com/current/public"
-    logs_dir: "/var/www/bayrunon.jimbalatero.com/logs"
 
-#  - servername: "phpmyadmin-bayrunon.jimbalatero.com"
-#    serveradmin: "{{dot_forward_email}}"
-#    documentroot: "/usr/share/phpmyadmin"
+  - servername: "phpmyadmin-bayrunon.jimbalatero.com"
+    serveradmin: "{{dot_forward_email}}"
+    documentroot: "/usr/share/phpmyadmin"
 
 apache_mods_enabled:
   - rewrite.load
   - ssl.load
+  - status.load
+  - info.load
 
 certbot_create_if_missing: false
 certbot_auto_renew_options: "--apache --quiet --no-self-upgrade"
