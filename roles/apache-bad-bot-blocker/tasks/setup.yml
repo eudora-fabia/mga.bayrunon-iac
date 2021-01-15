@@ -1,0 +1,13 @@
+---
+- name: Download update-apacheblocker.sh
+  get_url:
+    url: https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/update-apacheblocker.sh
+    dest: /usr/sbin/update-apacheblocker.sh
+    mode: 0755
+
+- name: Change email for notification
+  lineinfile:
+    dest: /usr/sbin/update-apacheblocker.sh
+    state: present
+    regexp: "^#?EMAIL="
+    line: "EMAIL='{{dot_forward_email}}'"

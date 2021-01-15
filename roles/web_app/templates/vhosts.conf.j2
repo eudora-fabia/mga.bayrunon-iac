@@ -9,7 +9,7 @@
 {% if vhost.documentroot is defined %}
   DocumentRoot "{{ vhost.documentroot }}"
 {% endif %}
-
+  DirectoryIndex index.php index.html
 {% if vhost.serveradmin is defined %}
   ServerAdmin {{ vhost.serveradmin }}
 {% endif %}
