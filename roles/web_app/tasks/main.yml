@@ -8,6 +8,11 @@
     state: absent
   notify: restart apache
 
+- name: Remove default DocumentRoot.
+  file:
+    path: "/var/www/html"
+    state: absent
+
 - name: Install Web-Apps
   include_tasks: install-vhost.yml
   with_items: "{{ web_apps }}"

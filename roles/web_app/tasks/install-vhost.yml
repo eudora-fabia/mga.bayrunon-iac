@@ -38,5 +38,8 @@
   register: letsencrypt_cert
 
 - name: Generate new certificate if one doesn't exist.
-  command: "{{ certbot_create_command }}"
+  command: >-
+     certbot --apache --noninteractive --agree-tos
+     --email {{ dot_forward_email }}
+     -d {{ app.servername }}
   when: not letsencrypt_cert.stat.exists
