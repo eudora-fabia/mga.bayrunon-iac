@@ -1,0 +1,10 @@
+---
+- name: Make sure /etc/apache2/custom.d exists
+  file:
+    path: "/etc/apache2/custom.d"
+    state: directory
+
+- name: Download globalblacklist.conf
+  get_url:
+    url: https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/globalblacklist.conf
+    dest: /etc/apache2/custom.d/globalblacklist.conf

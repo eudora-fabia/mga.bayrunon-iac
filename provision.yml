@@ -24,6 +24,8 @@
       tags: ssh
     - role: geerlingguy.apache
       tags: [ lamp-server, apache ]
+    - role: apache-bad-bot-blocker
+      tags: [ lamp-server, apache, bad-bot-blocker ]
     - role: geerlingguy.php-versions
       tags: [ lamp-server, php ]
     - role: geerlingguy.php
