@@ -43,7 +43,7 @@
 
 - name: Cron for Monitoring Daily Referers on Apache
   cron:
-    name: Cron for Monitoring Daily Referers on Apache
+    name: Cron for Monitoring Daily Referers on Apache - {{ app.servername }}
     job: |
       tail -10000 /var/log/apache2/{{ app.servername }}-access.log | awk '$11 !~ /google|bing|yahoo|yandex|{{ app.servername }}/' | awk '{print $11}' | tr -d '"' | sort | uniq -c | sort -rn | head -1000 | mail -s "Top 1000 Referers for {{ app.servername }}" {{ dot_forward_email }}
     special_time: daily
@@ -51,7 +51,7 @@
 
 - name: Cron for Monitoring Daily User Agents on Apache
   cron:
-    name: Cron for Monitoring Daily User Agents on Apache
+    name: Cron for Monitoring Daily User Agents on Apache - {{ app.servername }}
     job: |
       tail -50000 /var/log/apache2/{{ app.servername }}-access.log | awk '{print $12}' | tr -d '"' | sort | uniq -c | sort -rn | head -1000 | mail -s "Top 1000 Agents for {{ app.servername }}" {{ dot_forward_email }}
     special_time: daily
