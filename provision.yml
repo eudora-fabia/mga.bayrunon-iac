@@ -9,7 +9,7 @@
     - group_vars/lamp-server.yml
   user: "{{default_username}}"  # run whole script with default user
   become: yes
-  roles:  # order is not random!
+  roles: # order is not random!
     - role: nickjj.fail2ban
       tags: fail2ban
     - role: common
@@ -24,10 +24,6 @@
       tags: ssh
     - role: geerlingguy.apache
       tags: [ lamp-sever, apache ]
-    - role: geerlingguy.certbot
-      tags: [ lamp-sever, apache, certbot ]
-    - role: web_app
-      tags: [ lamp-sever, apache, web_app ]
     - role: geerlingguy.php-versions
       tags: [ lamp-sever, php ]
     - role: geerlingguy.php
@@ -44,6 +40,10 @@
       tags: [ lamp-sever, php ]
     - role: geerlingguy.composer
       tags: [ lamp-sever, php ]
+    - role: geerlingguy.certbot
+      tags: [ lamp-sever, apache, certbot ]
+    - role: web_app
+      tags: [ lamp-sever, apache, web_app ]
     - role: geerlingguy.mysql
       tags: [ lamp-sever, db ]
     - role: geerlingguy.phpmyadmin
