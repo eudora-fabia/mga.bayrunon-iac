@@ -21,7 +21,9 @@ apache_mods_enabled:
   - rewrite.load
   - ssl.load
   - status.load
+  - status.conf
   - info.load
+  - info.conf
 
 certbot_create_if_missing: false
 certbot_auto_renew_options: "--apache --quiet --no-self-upgrade"
