@@ -2,10 +2,23 @@
 - name: Deploy app
   hosts: prod
   vars:
-    ansistrano_deploy_from: "{{ playbook_dir }}/../my-app"
-    ansistrano_deploy_to: "/tmp/my-app.com"
+    ansistrano_deploy_from: "/var/www/bayrunon.jimbalatero.com"
+    ansistrano_deploy_to: "/var/www/bayrunon.jimbalatero.com"
     ansistrano_keep_releases: 3
     # There seems to be an issue with rsync in vagrant
-    ansistrano_deploy_via: copy
+    ansistrano_deploy_via: git
+
+    ## GIT pull strategy
+    ansistrano_git_repo: git@github.com:eudora-fabia/mga.bayrunon-app.git
+    ansistrano_git_branch: master
+    ansistrano_git_identity_key_path: ""
+    ansistrano_git_identity_key_remote_path: ""
+
+    ansistrano_shared_paths:
+      - storage
+      - node_modules
+    ansistrano_shared_files:
+      - .env
+
   roles:
     - { role: ansistrano.deploy }
