@@ -45,3 +45,19 @@ mysql_packages:
   - mariadb-client
   - mariadb-server
   - python-mysqldb
+
+# apache-bad-bot-blocker
+whitelist_ips:
+  - ip: 173.82.245.111 # s01cloudcone.jimbalatero.com
+    state: present
+  - ip: 173.82.151.32 # s02cloudcone.jimbalatero.com
+    state: present
+  - ip: 173.82.219.205 # s03cloudcone.jimbalatero.com
+    state: present
+
+# https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/whitelist-domains.conf
+whitelist_domains:
+  - domain: jimbalatero\.com
+    state: present
+  - domain: jbaltero\.xyz
+    state: present
