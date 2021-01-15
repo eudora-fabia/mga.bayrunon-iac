@@ -48,3 +48,4 @@ packages_to_install:
     - exim4
     - python-certbot-apache # will be needed later by certbot
     - apticron-systemd
+    - lynx # apache2ctl status
