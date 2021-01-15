@@ -18,8 +18,8 @@ web_apps:
 #    documentroot: "/usr/share/phpmyadmin"
 
 apache_mods_enabled:
-    - rewrite.load
-    - ssl.load
+  - rewrite.load
+  - ssl.load
 
 certbot_create_if_missing: false
 certbot_admin_email: "{{dot_forward_email}}"
@@ -30,7 +30,7 @@ certbot_certs:
       - bayrunon.jimbalatero.com
       - phpmyadmin-bayrunon.jimbalatero.com
 certbot_create_command: >-
-  certbot certonly --apache --noninteractive --agree-tos
+  certbot --apache --noninteractive --agree-tos
   --email {{ certbot_admin_email }}
   -d {{ app.servername }}
 

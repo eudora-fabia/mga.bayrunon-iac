@@ -1,15 +1,7 @@
 ---
-apache_listen_ip: "*"
-apache_listen_port: 80
-apache_listen_port_ssl: 443
+# these options are from ansible-role-apache
 apache_allow_override: "All"
 apache_options: "-Indexes +FollowSymLinks"
-apache_ignore_missing_ssl_certificate: true
-apache_ssl_protocol: "All -SSLv2 -SSLv3"
-apache_ssl_cipher_suite: "AES256+EECDH:AES256+EDH"
-apache_vhosts_version: "2.4"
-apache_service: apache2
-apache_default_vhost_filename: 000-default.conf
 
 apache_vhosts:
   - servername: "{{ app.servername }}"
@@ -20,14 +12,14 @@ apache_vhosts:
       ErrorLog ${APACHE_LOG_DIR}/{{ app.servername }}-error.log
       CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access.log combined
 
-apache_vhosts_ssl:
-  - servername: "{{ app.servername }}"
-    documentroot: "{{ app.documentroot }}"
-    serveradmin: "{{dot_forward_email}}"
-    certificate_file: "/etc/letsencrypt/live/{{ app.servername }}/fullchain.pem"
-    certificate_key_file: "/etc/letsencrypt/live/{{ app.servername }}/privkey.pem"
-    certificate_chain_file: "/etc/letsencrypt/live/{{ app.servername }}/chain.pem"
-    extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ documentroot }}"
-      ErrorLog ${APACHE_LOG_DIR}/{{ app.servername }}-error.log
-      CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access.log combined
+#apache_vhosts_ssl:
+#  - servername: "{{ app.servername }}"
+#    documentroot: "{{ app.documentroot }}"
+#    serveradmin: "{{dot_forward_email}}"
+#    certificate_file: "/etc/letsencrypt/live/{{ app.servername }}/fullchain.pem"
+#    certificate_key_file: "/etc/letsencrypt/live/{{ app.servername }}/privkey.pem"
+#    certificate_chain_file: "/etc/letsencrypt/live/{{ app.servername }}/chain.pem"
+#    extra_parameters: |
+#      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ documentroot }}"
+#      ErrorLog ${APACHE_LOG_DIR}/{{ app.servername }}-error.log
+#      CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access.log combined
