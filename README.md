@@ -101,6 +101,14 @@ ansible all -i hosts -m ping #should return SUCCESS
 
 `curl -sSL https://git.io/v7Hch | bash`
 
+# To test logcheck new rules
+
+this will send an email
+
+```
+sudo -u logcheck logcheck -t -d
+```
+
 Note:
 
 * You cannot access `live` via `vagrant ssh live` because of disabled password auth. You need to go through `vagrant ssh ansible` first, and then do `ssh live`

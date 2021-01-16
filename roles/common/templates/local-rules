@@ -241,4 +241,4 @@ systemd[\[0-9\]+]: Failed to reset devices.list on /machine\.slice: Invalid argu
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Connection reset by .+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: error: Could not load host key: /etc/ssh/ssh_host_ecdsa_key
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: error: Could not load host key: /etc/ssh/ssh_host_ed25519_key
-^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mailhog\[[0-9]+\]: [APIv1] KEEPALIVE /api/v1/events
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mailhog\[[0-9]+\]: \[APIv1\] KEEPALIVE /api/v1/events
