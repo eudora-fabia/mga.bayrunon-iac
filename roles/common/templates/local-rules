@@ -239,3 +239,5 @@ systemd[\[0-9\]+]: Failed to reset devices.list on /machine\.slice: Invalid argu
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Unable to negotiate with .+ port [0-9]+: no matching key exchange method found. Their offer: .+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Bad protocol version identification .+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Connection reset by .+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: error: Could not load host key: /etc/ssh/ssh_host_ecdsa_key
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: error: Could not load host key: /etc/ssh/ssh_host_ed25519_key

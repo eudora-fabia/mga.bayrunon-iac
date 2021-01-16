@@ -44,6 +44,8 @@
     owner: root
     group: logcheck
     mode: u=rw,g=r,o=r
+  tags:
+    - update-logcheck-rules
 
 - name: Configure timezone
   timezone:
