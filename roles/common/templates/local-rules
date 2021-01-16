@@ -227,6 +227,7 @@ systemd[\[0-9\]+]: Failed to reset devices.list on /machine\.slice: Invalid argu
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ansible-setup: Invoked with.+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ansible-apt: Invoked with.+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ansible-apt: \[WARNING\] Could not find aptitude\. Using apt-get instead\.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ python3\[[0-9]+\]: ansible-[[:alnum:]]+ Invoked with.+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sSMTP\[[0-9]+\]: Creating SSL connection to host
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sSMTP\[[0-9]+\]: SSL connection using.+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sSMTP\[[0-9]+\]: Sent mail for.+$
@@ -241,4 +242,4 @@ systemd[\[0-9\]+]: Failed to reset devices.list on /machine\.slice: Invalid argu
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Connection reset by .+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: error: Could not load host key: /etc/ssh/ssh_host_ecdsa_key
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: error: Could not load host key: /etc/ssh/ssh_host_ed25519_key
-^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mailhog\[[0-9]+\]: \[APIv1\] KEEPALIVE /api/v1/events
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mailhog\[[0-9]+\]: (message repeated [0-9]{1,3} times: \[ )?\[APIv1\] KEEPALIVE /api/v1/events(\])?
