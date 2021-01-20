@@ -109,3 +109,15 @@
     regexp: "^#?ENABLED="
     line: "ENABLED=0"
     state: present
+
+- name: Disable motds
+  file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    mode: '0666'
+  loop:
+    - /etc/update-motd.d/10-help-text
+    - /etc/update-motd.d/50-motd-news
+    - /etc/update-motd.d/80-livepatch
+
