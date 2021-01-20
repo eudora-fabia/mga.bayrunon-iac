@@ -109,6 +109,8 @@
     regexp: "^#?ENABLED="
     line: "ENABLED=0"
     state: present
+  tags:
+    - disable-motds
 
 - name: Disable motds
   file:
@@ -120,4 +122,6 @@
     - /etc/update-motd.d/10-help-text
     - /etc/update-motd.d/50-motd-news
     - /etc/update-motd.d/80-livepatch
+  tags:
+    - disable-motds
 
