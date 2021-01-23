@@ -1,0 +1,40 @@
+- name: Add monitoring vhost to apache
+  copy: src=etc_apache2_sites-available_00-status.conf dest=/etc/apache2/sites-available/00-status.conf
+
+- name: Enable the status vhost
+  command: a2ensite 00-status.conf creates=/etc/apache2/sites-enabled/00-status.conf
+  notify: restart apache
+
+- name: Install monit
+  apt: pkg=monit state=present
+
+- name: Copy monit default config
+  template:
+    src: etc_monit_conf.d_defaults.j2
+    dest: /etc/monit/conf-available/defaults
+
+- name: Copy monit service config files into place
+  copy:
+    src: etc_monit_conf.d_{{ item }}
+    dest: /etc/monit/conf-available/{{ item }}
+  with_items:
+    - php{{ php_version }}-fpm
+    - fail2ban
+    - redis
+
+- name: Enable monit service config
+  file:
+    src: /etc/monit/conf-available/{{ item }}
+    dest: /etc/monit/conf-enabled/{{ item }}
+    state: link
+  with_items:
+    - defaults
+    - cron
+    - mysql
+    - openssh-server
+    - redis
+    - php{{ php_version }}-fpm
+    - fail2ban
+    - apache2
+    - rsyslog
+  notify: restart monit

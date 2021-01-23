@@ -54,5 +54,5 @@
       tags: redis
     - role: geerlingguy.mailhog
       tags: mailhog
-    - role: ansible-monit
-      tags: monit
+    - role: monitoring
+      tags: monitoring

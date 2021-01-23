@@ -1,0 +1,14 @@
+BaseDir "/etc/collectd"
+
+LoadPlugin syslog
+LoadPlugin cpu
+LoadPlugin interface
+LoadPlugin load
+LoadPlugin memory
+LoadPlugin disk
+LoadPlugin df
+LoadPlugin rrdtool
+
+<Plugin rrdtool>
+  DataDir "/opt/collectd/var/lib/collectd/rrd"
+</Plugin>

@@ -1,0 +1,4 @@
+- import_tasks: monit.yml
+  tags: monit
+- import_tasks: collectd.yml
+  tags: collectd

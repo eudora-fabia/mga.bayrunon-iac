@@ -1,0 +1,6 @@
+check process php7.4-fpm with pidfile /run/php/php7.4-fpm.pid
+	start program = "/usr/sbin/service php7.4-fpm start" with timeout 60 seconds
+	stop program  = "/usr/sbin/service php7.4-fpm stop"
+	if failed unixsocket /run/php/php-fpm.sock then restart
+	if cpu usage > 95% for 3 cycles then restart
+  if 5 restarts within 5 cycles then timeout
