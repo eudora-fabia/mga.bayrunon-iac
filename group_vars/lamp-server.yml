@@ -27,5 +27,6 @@ apache_mods_enabled:
 
 certbot_create_if_missing: false
 certbot_auto_renew_options: "--apache --quiet --no-self-upgrade"
+certbot_auto_renew_user: root
 
 mailhog_version: 1.0.1
