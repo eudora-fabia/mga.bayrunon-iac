@@ -125,3 +125,13 @@
   tags:
     - disable-motds
 
+- name: Setup forwarding of root emails to {{ dot_forward_email }}
+  lineinfile:
+    dest: /etc/aliases
+    state: present
+    line: |
+      root: {{ dot_forward_email }}
+  notify: newaliases
+  tags:
+    - setup-root-email-aliases
+
