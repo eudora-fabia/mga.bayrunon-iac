@@ -2,3 +2,5 @@
   tags: monit
 - import_tasks: collectd.yml
   tags: collectd
+- import_tasks: facette.yml
+  tags: facette

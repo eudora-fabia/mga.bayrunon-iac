@@ -1,0 +1,5 @@
+---
+- name: Install facette/facette
+  apt:
+    deb: https://github.com/facette/facette/releases/download/0.5.1/facette_0.5.1_bionic-amd64.deb
+
