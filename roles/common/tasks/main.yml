@@ -129,8 +129,7 @@
   lineinfile:
     dest: /etc/aliases
     state: present
-    line: |
-      root: {{ dot_forward_email }}
+    line: "root: {{ dot_forward_email }}"
   notify: newaliases
   tags:
     - setup-root-email-aliases
