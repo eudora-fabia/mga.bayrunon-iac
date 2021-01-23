@@ -87,7 +87,7 @@ echo 'ansible ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/ansible
 ```
 # ssh copy and test ansible connection
 ssh-copy-id s02cloudcone.jimbalatero.com
-ansible all -i hosts -m ping #should return SUCCESS
+ansible all -m ping #should return SUCCESS
 ```
 
 # In the control node

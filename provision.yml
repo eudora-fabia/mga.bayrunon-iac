@@ -43,7 +43,7 @@
     - role: geerlingguy.composer
       tags: [ lamp-server, php ]
     - role: geerlingguy.certbot
-      tags: [ lamp-sever, apache, certbot ]
+      tags: [ lamp-server, apache, certbot ]
     - role: web_app
       tags: [ lamp-sever, apache, web_app ]
     - role: geerlingguy.mysql
