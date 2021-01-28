@@ -22,6 +22,16 @@
     - fail2ban
     - redis
 
+- name: Update /etc/monit/conf-available/openssh-server
+  lineinfile:
+    dest: /etc/monit/conf-available/openssh-server
+    regexp: "   if failed host localhost port 22 with proto ssh then restart"
+    line: "   if failed host localhost port 22 with proto ssh for 2 times within 3 cycles then restart"
+    state: present
+  notify: restart monit
+  tags:
+    - update-monit-conf
+
 - name: Enable monit service config
   file:
     src: /etc/monit/conf-available/{{ item }}
