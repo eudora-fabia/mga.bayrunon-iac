@@ -9,6 +9,11 @@ LoadPlugin disk
 LoadPlugin df
 LoadPlugin rrdtool
 
+<Plugin "interface">
+  Interface "lo"
+  IgnoreSelected true
+</Plugin>
+
 <Plugin rrdtool>
-  DataDir "/opt/collectd/var/lib/collectd/rrd"
+  DataDir "/var/lib/collectd/rrd"
 </Plugin>
