@@ -8,6 +8,14 @@ LoadPlugin memory
 LoadPlugin disk
 LoadPlugin df
 LoadPlugin rrdtool
+LoadPlugin apache
+LoadPlugin uptime
+
+<Plugin "apache">
+   <Instance "apache80">
+       URL "http://localhost/server-status?auto"
+   </Instance>
+</Plugin>
 
 <Plugin "interface">
   Interface "lo"
