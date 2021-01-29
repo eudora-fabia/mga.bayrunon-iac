@@ -1,0 +1,125 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "fixed",
+    "title": "Apache Scoreboard",
+    "yaxis_label": "Workers"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-closing",
+          "name": "Closing"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-dnslookup",
+          "name": "DNSLookup"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-finishing",
+          "name": "Finishing"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-idle_cleanup",
+          "name": "Idle Cleanup"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-keepalive",
+          "name": "Keep-Alive"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-logging",
+          "name": "Logging"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-open",
+          "name": "Open"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-reading",
+          "name": "Reading"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-sending",
+          "name": "Sending"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-starting",
+          "name": "Starting"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.scoreboard-waiting",
+          "name": "Waiting"
+        }
+      ]
+    }
+  ],
+  "name": "apache-scoreboard",
+  "description": "Apache Worker Thread scoreboard"
+}

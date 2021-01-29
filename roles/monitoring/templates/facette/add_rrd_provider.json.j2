@@ -102,6 +102,12 @@
       "target": "metric",
       "pattern": "^users\\.users\\.value",
       "into": "users.count"
+    },
+    {
+      "action": "rewrite",
+      "target": "metric",
+      "pattern": "^apache-(.+)\\.apache_(.+)\\.value$",
+      "into": "apache.$2"
     }
   ]
 }

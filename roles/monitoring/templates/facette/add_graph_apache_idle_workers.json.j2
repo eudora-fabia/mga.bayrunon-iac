@@ -1,0 +1,25 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "fixed",
+    "title": "Apache Idle Workers",
+    "yaxis_label": "Workers"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.idle_workers",
+          "name": "Idle Workers"
+        }
+      ]
+    }
+  ],
+  "name": "apache-idle-workers",
+  "description": "The number of Apache workers that are idling. If this number is consistently low, then your server may be too busy and you may have to increase the number of threads. If it is consistently high, then the system may be under-utilized."
+}

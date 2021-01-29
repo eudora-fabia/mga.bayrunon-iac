@@ -1,0 +1,26 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "fixed",
+    "title": "Apache Requests",
+    "yaxis_unit_base": "s",
+    "yaxis_label": "Reqs"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.requests",
+          "name": "Reqs"
+        }
+      ]
+    }
+  ],
+  "name": "apache-requests",
+  "description": "The number of requests that have been served by Apache. This metric is useful to know total requests and the rate at which Apache is able to serve them."
+}
