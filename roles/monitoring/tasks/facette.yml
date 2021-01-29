@@ -3,3 +3,9 @@
   apt:
     deb: https://github.com/facette/facette/releases/download/0.5.1/facette_0.5.1_bionic-amd64.deb
 
+- name: Enable HTTP for public access
+  replace:
+    path: /etc/facette/facette.yaml
+    regexp: localhost:12003
+    replace: 0.0.0.0:12003
+  notify: restart facette
