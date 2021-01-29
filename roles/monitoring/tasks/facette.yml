@@ -22,8 +22,19 @@
     url: http://localhost:{{ facette_port }}/api/v1/providers
     body: "{{ add_rrd_provider_json }}"
     body_format: json
-    status_code: 201
+    status_code: [201, 409]
     method: POST
     return_content: yes
   tags:
-    - add-provider
+    - init-config-facette
+
+- name: Add Memory Usage Graph
+  uri:
+    url: http://localhost:{{ facette_port }}/api/v1/library/graphs
+    body: "{{ add_graph_memory_usage }}"
+    body_format: json
+    status_code: [201, 409]
+    method: POST
+    return_content: yes
+  tags:
+    - init-config-facette

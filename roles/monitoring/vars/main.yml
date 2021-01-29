@@ -1,2 +1,3 @@
 ---
 add_rrd_provider_json: "{{ lookup('template', 'facette/add_rrd_provider.json.j2') }}"
+add_graph_memory_usage: "{{ lookup('template', 'facette/add_graph_memory_usage.json.j2') }}"
