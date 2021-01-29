@@ -13,7 +13,7 @@
       "series": [
         {
           "origin": "rrd",
-          "source": "{{ ansible_hostname }}",
+          "source": "{{ ansible_fqdn }}",
           "metric": "memory.free",
           "name": "memory.free"
         }
@@ -23,7 +23,7 @@
       "series": [
         {
           "origin": "rrd",
-          "source": "{{ ansible_hostname }}",
+          "source": "{{ ansible_fqdn }}",
           "metric": "memory.used",
           "name": "memory.used"
         }
@@ -33,7 +33,7 @@
       "series": [
         {
           "origin": "rrd",
-          "source": "{{ ansible_hostname }}",
+          "source": "{{ ansible_fqdn }}",
           "metric": "memory.buffered",
           "name": "memory.buffered"
         }
@@ -43,7 +43,7 @@
       "series": [
         {
           "origin": "rrd",
-          "source": "{{ ansible_hostname }}",
+          "source": "{{ ansible_fqdn }}",
           "metric": "memory.cached",
           "name": "memory.cached"
         }
@@ -53,7 +53,7 @@
       "series": [
         {
           "origin": "rrd",
-          "source": "{{ ansible_hostname }}",
+          "source": "{{ ansible_fqdn }}",
           "metric": "memory.slab_recl",
           "name": "memory.slab_recl"
         }
@@ -63,7 +63,7 @@
       "series": [
         {
           "origin": "rrd",
-          "source": "{{ ansible_hostname }}",
+          "source": "{{ ansible_fqdn }}",
           "metric": "memory.slab_unrecl",
           "name": "memory.slab_unrecl"
         }
