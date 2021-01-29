@@ -38,3 +38,14 @@
     return_content: yes
   tags:
     - init-config-facette
+
+- name: Add Load Averages Graph
+  uri:
+    url: http://localhost:{{ facette_port }}/api/v1/library/graphs
+    body: "{{ add_graph_load_avgs }}"
+    body_format: json
+    status_code: [201, 409]
+    method: POST
+    return_content: yes
+  tags:
+    - init-config-facette

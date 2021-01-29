@@ -1,0 +1,44 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "fixed",
+    "yaxis_label": "",
+    "title": "Load Averages"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "load.shortterm",
+          "name": "1m"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "load.midterm",
+          "name": "5m"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "load.longterm",
+          "name": "15m"
+        }
+      ]
+    }
+  ],
+  "name": "load-avgs"
+}
