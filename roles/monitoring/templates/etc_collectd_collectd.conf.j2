@@ -23,5 +23,5 @@ LoadPlugin uptime
 </Plugin>
 
 <Plugin rrdtool>
-  DataDir "/var/lib/collectd/rrd"
+  DataDir "{{ rrdtool_datadir }}"
 </Plugin>

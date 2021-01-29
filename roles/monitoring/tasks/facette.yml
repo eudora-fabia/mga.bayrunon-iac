@@ -6,6 +6,24 @@
 - name: Enable HTTP for public access
   replace:
     path: /etc/facette/facette.yaml
-    regexp: localhost:12003
-    replace: 0.0.0.0:12003
+    regexp: localhost:12003 #default
+    replace: 0.0.0.0:{{ facette_port }}
   notify: restart facette
+
+- name: Set default time range
+  replace:
+    path: /etc/facette/facette.yaml
+    regexp: "time_range: -1h"
+    replace: "time_range: -24h"
+  notify: restart facette
+
+- name: Add RRD provider
+  uri:
+    url: http://localhost:{{ facette_port }}/api/v1/providers
+    body: "{{ add_rrd_provider_json }}"
+    body_format: json
+    status_code: 201
+    method: POST
+    return_content: yes
+  tags:
+    - add-provider

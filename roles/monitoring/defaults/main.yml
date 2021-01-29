@@ -1,0 +1,3 @@
+---
+rrdtool_datadir: /var/lib/collectd/rrd
+facette_port: 12003
