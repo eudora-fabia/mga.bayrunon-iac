@@ -1,11 +1,9 @@
 BaseDir "/etc/collectd"
 
 LoadPlugin syslog
-LoadPlugin cpu
 LoadPlugin interface
 LoadPlugin load
 LoadPlugin memory
-LoadPlugin disk
 LoadPlugin df
 LoadPlugin rrdtool
 LoadPlugin apache
@@ -17,9 +15,18 @@ LoadPlugin uptime
    </Instance>
 </Plugin>
 
-<Plugin "interface">
-  Interface "lo"
-  IgnoreSelected true
+<Plugin "cpu">
+    ValuesPercentage true
+</Plugin>
+
+<Plugin interface>
+    Interface "eth0"
+    IgnoreSelected false
+</Plugin>
+
+<Plugin "df">
+    IgnoreSelected false
+    MountPoint "/"
 </Plugin>
 
 <Plugin rrdtool>
