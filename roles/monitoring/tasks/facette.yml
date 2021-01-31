@@ -17,7 +17,7 @@
   replace:
     path: /etc/facette/facette.yaml
     regexp: "time_range: -1h"
-    replace: "time_range: -24h"
+    replace: "time_range: -1d"
   notify: restart facette
 
 - name: Add RRD provider
