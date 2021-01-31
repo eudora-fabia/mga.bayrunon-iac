@@ -8,6 +8,9 @@
 - name: Install monit
   apt: pkg=monit state=present
 
+- name: Ensure monit starts on a fresh reboot
+  service: name=monit state=started enabled=yes
+
 - name: Copy monit default config
   template:
     src: etc_monit_conf.d_defaults.j2

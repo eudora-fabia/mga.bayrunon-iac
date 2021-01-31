@@ -3,6 +3,9 @@
   apt:
     deb: https://github.com/facette/facette/releases/download/0.5.1/facette_0.5.1_bionic-amd64.deb
 
+- name: Ensure facette starts on a fresh reboot
+  service: name=facette state=started enabled=yes
+
 - name: Enable HTTP for public access
   replace:
     path: /etc/facette/facette.yaml
@@ -31,76 +34,18 @@
 - name: Add Memory Usage Graph
   uri:
     url: http://localhost:{{ facette_port }}/api/v1/library/graphs
-    body: "{{ add_graph_memory_usage }}"
+    body: "{{ item }}"
     body_format: json
     status_code: [201, 409]
     method: POST
     return_content: yes
-  tags:
-    - init-config-facette
-
-- name: Add Load Averages Graph
-  uri:
-    url: http://localhost:{{ facette_port }}/api/v1/library/graphs
-    body: "{{ add_graph_load_avgs }}"
-    body_format: json
-    status_code: [201, 409]
-    method: POST
-    return_content: yes
-  tags:
-    - init-config-facette
-
-- name: Add Apache Bytes Graph
-  uri:
-    url: http://localhost:{{ facette_port }}/api/v1/library/graphs
-    body: "{{ add_graph_apache_bytes }}"
-    body_format: json
-    status_code: [201, 409]
-    method: POST
-    return_content: yes
-  tags:
-    - init-config-facette
-
-- name: Add Apache Connections Graph
-  uri:
-    url: http://localhost:{{ facette_port }}/api/v1/library/graphs
-    body: "{{ add_graph_apache_connections }}"
-    body_format: json
-    status_code: [201, 409]
-    method: POST
-    return_content: yes
-  tags:
-    - init-config-facette
-
-- name: Add Apache Idle Workers Graph
-  uri:
-    url: http://localhost:{{ facette_port }}/api/v1/library/graphs
-    body: "{{ add_graph_apache_idle_workers }}"
-    body_format: json
-    status_code: [201, 409]
-    method: POST
-    return_content: yes
-  tags:
-    - init-config-facette
-
-- name: Add Apache Requests Graph
-  uri:
-    url: http://localhost:{{ facette_port }}/api/v1/library/graphs
-    body: "{{ add_graph_apache_requests }}"
-    body_format: json
-    status_code: [201, 409]
-    method: POST
-    return_content: yes
-  tags:
-    - init-config-facette
-
-- name: Add Apache Scoreboard Graph
-  uri:
-    url: http://localhost:{{ facette_port }}/api/v1/library/graphs
-    body: "{{ add_graph_apache_scoreboard }}"
-    body_format: json
-    status_code: [201, 409]
-    method: POST
-    return_content: yes
+  with_items:
+    - {{ add_graph_memory_usage }}
+    - {{ add_graph_load_avgs }}
+    - {{ add_graph_apache_bytes }}
+    - {{ add_graph_apache_connections }}
+    - {{ add_graph_apache_idle_workers }}
+    - {{ add_graph_apache_requests }}
+    - {{ add_graph_apache_scoreboard }}
   tags:
     - init-config-facette
