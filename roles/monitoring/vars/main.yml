@@ -9,3 +9,4 @@ add_graph_apache_requests: "{{ lookup('template', 'facette/add_graph_apache_requ
 add_graph_apache_scoreboard: "{{ lookup('template', 'facette/add_graph_apache_scoreboard.json.j2') }}"
 add_graph_disk1_usage: "{{ lookup('template', 'facette/add_graph_disk1_usage.json.j2') }}"
 add_graph_network_interface_in_out_bytes: "{{ lookup('template', 'facette/add_graph_network_interface_in_out_bytes.json.j2') }}"
+add_graph_memory_swap: "{{ lookup('template', 'facette/add_graph_memory_swap.json.j2') }}"

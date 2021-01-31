@@ -49,5 +49,6 @@
     - "{{ add_graph_apache_scoreboard }}"
     - "{{ add_graph_disk1_usage }}"
     - "{{ add_graph_network_interface_in_out_bytes }}"
+    - "{{ add_graph_memory_swap }}"
   tags:
     - init-config-facette
