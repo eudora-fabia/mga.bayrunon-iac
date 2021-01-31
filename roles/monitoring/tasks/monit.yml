@@ -49,4 +49,6 @@
     - fail2ban
     - apache2
     - rsyslog
+    - collectd
+    - facette
   notify: restart monit
