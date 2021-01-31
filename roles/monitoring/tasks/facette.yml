@@ -40,12 +40,12 @@
     method: POST
     return_content: yes
   with_items:
-    - {{ add_graph_memory_usage }}
-    - {{ add_graph_load_avgs }}
-    - {{ add_graph_apache_bytes }}
-    - {{ add_graph_apache_connections }}
-    - {{ add_graph_apache_idle_workers }}
-    - {{ add_graph_apache_requests }}
-    - {{ add_graph_apache_scoreboard }}
+    - "{{ add_graph_memory_usage }}"
+    - "{{ add_graph_load_avgs }}"
+    - "{{ add_graph_apache_bytes }}"
+    - "{{ add_graph_apache_connections }}"
+    - "{{ add_graph_apache_idle_workers }}"
+    - "{{ add_graph_apache_requests }}"
+    - "{{ add_graph_apache_scoreboard }}"
   tags:
     - init-config-facette
