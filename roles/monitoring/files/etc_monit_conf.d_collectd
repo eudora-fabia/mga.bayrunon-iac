@@ -1,4 +1,4 @@
-check program Collectd with path "systemctl --quiet is-active collectd"
+check program Collectd with path "/bin/systemctl --quiet is-active collectd"
     start program = "/etc/init.d/collectd start"
 	stop  program = "/etc/init.d/collectd stop"
     if status != 0 then restart

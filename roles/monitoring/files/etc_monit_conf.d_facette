@@ -1,4 +1,4 @@
-check program Facette with path "systemctl --quiet is-active facette"
+check program Facette with path "/bin/systemctl --quiet is-active facette"
     start program = "/etc/init.d/facette start"
 	stop  program = "/etc/init.d/facette stop"
     if status != 0 then restart
