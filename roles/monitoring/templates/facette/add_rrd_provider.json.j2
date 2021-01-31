@@ -2,7 +2,7 @@
   "name": "rrd",
   "description": "From local collectd",
   "connector": "rrd",
-  "refresh_interval": 120,
+  "refresh_interval": 3600,
   "settings": {
     "path": "{{ rrdtool_datadir }}",
     "pattern": "(?P<source>[^/]+)/(?P<metric>.+).rrd"

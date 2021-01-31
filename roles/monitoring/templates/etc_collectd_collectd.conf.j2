@@ -8,6 +8,8 @@ LoadPlugin df
 LoadPlugin rrdtool
 LoadPlugin apache
 LoadPlugin uptime
+LoadPlugin swap
+LoadPlugin tail
 
 <Plugin "apache">
    <Instance "apache80">
@@ -15,13 +17,14 @@ LoadPlugin uptime
    </Instance>
 </Plugin>
 
-<Plugin "cpu">
-    ValuesPercentage true
+<Plugin "swap">
+    ReportIO false
+    ReportBytes true
 </Plugin>
 
 <Plugin interface>
-    Interface "eth0"
-    IgnoreSelected false
+    Interface "lo"
+    IgnoreSelected "true"
 </Plugin>
 
 <Plugin "df">
@@ -31,4 +34,35 @@ LoadPlugin uptime
 
 <Plugin rrdtool>
   DataDir "{{ rrdtool_datadir }}"
+</Plugin>
+
+<Plugin tail>
+    <File "/var/log/exim4/mainlog">
+        Instance "exim"
+        Interval 60
+        <Match>
+            Regex "S=([1-9][0-9]*)"
+            DSType "CounterAdd"
+            Type "ipt_bytes"
+            Instance "total"
+        </Match>
+        <Match>
+            Regex "<="
+            DSType "CounterInc"
+            Type "mail_count"
+            Instance "incoming"
+        </Match>
+        <Match>
+            Regex "=>"
+            DSType "CounterInc"
+            Type "mail_count"
+            Instance "outgoing"
+        </Match>
+        <Match>
+            Regex "=="
+            DSType "CounterInc"
+            Type "mail_count"
+            Instance "defer"
+        </Match>
+    </File>
 </Plugin>

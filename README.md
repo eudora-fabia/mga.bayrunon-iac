@@ -70,6 +70,11 @@ sudo bash install.sh -H s02cloudcone.jimbalatero.com -p .vault_pass -e env=prod
 # For some reason, jnv.debian-backports var: backports_uri doesn't work in all.yml
 ```
 
+facettectl library restore -i dump.tar.gz && sudo systemctl restart facette
+sudo rm -f /var/lib/facette/data.db && sudo systemctl restart facette
+
+sudo curl http://localhost:12003/api/v1/library/graphs
+
 # Prep the server
 
 Login as root in the prod server

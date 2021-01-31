@@ -47,5 +47,7 @@
     - "{{ add_graph_apache_idle_workers }}"
     - "{{ add_graph_apache_requests }}"
     - "{{ add_graph_apache_scoreboard }}"
+    - "{{ add_graph_disk1_usage }}"
+    - "{{ add_graph_network_interface_in_out_bytes }}"
   tags:
     - init-config-facette

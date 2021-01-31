@@ -1,0 +1,44 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": "normal",
+    "yaxis_center": true,
+    "yaxis_unit": "binary",
+    "yaxis_label": "GB",
+    "title": "Disk 1 Usage"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "df.root.free",
+          "name": "Free"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "df.root.reserved",
+          "name": "Reserved"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "df.root.used",
+          "name": "Used"
+        }
+      ]
+    }
+  ],
+  "name": "disk1"
+}
