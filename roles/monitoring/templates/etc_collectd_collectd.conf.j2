@@ -1,4 +1,5 @@
 BaseDir "/etc/collectd"
+PIDFile "/var/run/collectd.pid"
 
 LoadPlugin syslog
 LoadPlugin interface
@@ -30,6 +31,7 @@ LoadPlugin tail
 <Plugin "df">
     IgnoreSelected false
     MountPoint "/"
+    Interval 3600
 </Plugin>
 
 <Plugin rrdtool>
