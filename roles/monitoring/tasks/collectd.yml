@@ -25,23 +25,23 @@
   blockinfile:
     path: /etc/collectd/collectd.conf.d/filters.conf
     block: |
-    PreCacheChain "PreCache"
-    LoadPlugin match_regex
-    LoadPlugin target_scale
+      PreCacheChain "PreCache"
+      LoadPlugin match_regex
+      LoadPlugin target_scale
 
-    <Chain "PreCache">
-        <Rule>
-            <Match "regex">
-                Plugin "^tail$"
-                PluginInstance "^exim$"
-                Type "^mail_count$"
-                Invert false
-            </Match>
-            <Target "scale">
-                Factor 60
-            </Target>
-        </Rule>
-    </Chain>
+      <Chain "PreCache">
+          <Rule>
+              <Match "regex">
+                  Plugin "^tail$"
+                  PluginInstance "^exim$"
+                  Type "^mail_count$"
+                  Invert false
+              </Match>
+              <Target "scale">
+                  Factor 60
+              </Target>
+          </Rule>
+      </Chain>
   notify: restart collectd
   tags:
     - exim-filter-collectd

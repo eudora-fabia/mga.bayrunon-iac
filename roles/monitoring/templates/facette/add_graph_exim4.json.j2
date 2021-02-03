@@ -1,0 +1,54 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "fixed",
+    "title": "Exim4",
+    "yaxis_label": "Emails/Minute"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "tail-exim.mail_count-defer.value",
+          "name": "Defer"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "tail-exim.mail_count-frozen.value",
+          "name": "Frozen"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "tail-exim.mail_count-incoming.value",
+          "name": "Incoming"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "tail-exim.mail_count-outgoing.value",
+          "name": "Outgoing"
+        }
+      ]
+    }
+  ],
+  "name": "exim4"
+}
