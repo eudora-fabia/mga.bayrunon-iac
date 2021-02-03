@@ -40,12 +40,17 @@ LoadPlugin tail
 <Plugin tail>
     <File "/var/log/exim4/mainlog">
         Instance "exim"
-        Interval 60
         <Match>
             Regex "<="
             DSType "CounterInc"
             Type "mail_count"
             Instance "incoming"
+        </Match>
+        <Match>
+            Regex "\\*\\*"
+            DSType "CounterInc"
+            Type "mail_count"
+            Instance "frozen"
         </Match>
         <Match>
             Regex "=>"
@@ -60,4 +65,15 @@ LoadPlugin tail
             Instance "defer"
         </Match>
     </File>
+
+    <File "/var/log/auth.log">
+        Instance "auth"
+        <Match>
+          Regex "\\<sshd[^:]*: Invalid user [^ ]+ from\\>"
+          DSType "CounterInc"
+          Type "counter"
+          Instance "sshd-invalid_user"
+        </Match>
+    </File>
 </Plugin>
+
