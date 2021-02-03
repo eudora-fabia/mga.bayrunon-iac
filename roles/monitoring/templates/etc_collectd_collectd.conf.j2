@@ -75,5 +75,15 @@ LoadPlugin tail
           Instance "sshd-invalid_user"
         </Match>
     </File>
+
+    <File "/var/log/apache2/bayrunon.jimbalatero.com-access-api-req.log">
+        Instance "bayrunon-jimbalatero-com-response-time"
+        <Match>
+            Regex "\\s([0-9]+)$"
+            DSType "GaugeAverage"
+            Type "response_time"
+            Instance "response_time"
+        </Match>
+    </File>
 </Plugin>
 
