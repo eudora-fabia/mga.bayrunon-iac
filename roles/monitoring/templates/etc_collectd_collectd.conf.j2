@@ -77,12 +77,12 @@ LoadPlugin tail
     </File>
 
     <File "/var/log/apache2/bayrunon.jimbalatero.com-access-api-req.log">
-        Instance "bayrunon-jimbalatero-com-response-time"
+        Instance "bayrunon-web"
         <Match>
             Regex "\\s([0-9]+)$"
             DSType "GaugeAverage"
             Type "response_time"
-            Instance "response_time"
+            Instance "api"
         </Match>
     </File>
 </Plugin>

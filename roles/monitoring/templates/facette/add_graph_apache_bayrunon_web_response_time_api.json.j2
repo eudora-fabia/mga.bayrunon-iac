@@ -4,7 +4,7 @@
     "stack_mode": null,
     "yaxis_center": true,
     "yaxis_unit": "duration",
-    "title": "Apache API Response Time",
+    "title": "Apache Bayrunon-web API Response Time",
     "yaxis_unit_base": "us"
   },
   "template": false,
@@ -14,12 +14,11 @@
         {
           "origin": "rrd",
           "source": "{{ ansible_fqdn }}",
-          "metric": "tail-bayrunon-jimbalatero-com-response-time.response_time-response_time.value",
+          "metric": "tail-bayrunon-web.response_time-api.value",
           "name": "Response Time"
         }
       ]
     }
   ],
-  "name": "apache-api-response-time",
-  "description": "/api response time"
+  "name": "apache-bayrunon-web-response-time-api"
 }
