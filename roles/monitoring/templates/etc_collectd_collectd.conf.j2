@@ -10,6 +10,7 @@ LoadPlugin apache
 LoadPlugin uptime
 LoadPlugin swap
 LoadPlugin tail
+LoadPlugin curl_json
 
 <Plugin "apache">
    <Instance "apache80">
@@ -93,3 +94,28 @@ LoadPlugin tail
     </File>
 </Plugin>
 
+<Plugin curl_json>
+    <URL "http://localhost/php_fpm_status?json">
+     Instance 'php-fpm'
+     <Key "accepted conn">
+         Type "phpfpm_requests"
+         Instance ""
+     </Key>
+     <Key "slow requests">
+         Type "phpfpm_slow_requests"
+         Instance ""
+     </Key>
+     <Key "listen queue">
+         Type "phpfpm_listen_queue"
+         Instance ""
+     </Key>
+     <Key "active processes">
+         Type "phpfpm_processes"
+         Instance "active"
+     </Key>
+     <Key "total processes">
+         Type "phpfpm_processes"
+         Instance "total"
+     </Key>
+    </URL>
+</Plugin>

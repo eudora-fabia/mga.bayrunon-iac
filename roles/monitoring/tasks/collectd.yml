@@ -13,13 +13,22 @@
 - name: Ensure collectd is enabled
   command: update-rc.d collectd enable creates=/etc/rc3.d/S03collectd
 
-- name: Add mail_count in types.db
+- name: Update types.db
   lineinfile:
     dest: /usr/share/collectd/types.db
     state: present
-    line: "mail_count              value:COUNTER:0:65535"
+    line: "{{ item.k }}              {{ item.v }}"
     insertafter: "EOF"
+  with_items:
+    - { k: "mail_count", v: "value:COUNTER:0:65535" }
+    - { k: "phpfpm_listen_queue", v: "value:GAUGE:0:65535" }
+    - { k: "phpfpm_processes", v: "value:GAUGE:0:65535" }
+    - { k: "phpfpm_requests", v: "value:DERIVE:0:U" }
+    - { k: "phpfpm_slow_requests", v: "value:DERIVE:0:U" }
   notify: restart collectd
+  tags:
+    - types-db
+
 
 - name: Add exim filter
   blockinfile:
