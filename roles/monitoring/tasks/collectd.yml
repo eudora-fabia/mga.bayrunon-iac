@@ -45,3 +45,23 @@
   notify: restart collectd
   tags:
     - exim-filter-collectd
+
+- name: Enable php-fpm slow logging
+  lineinfile:
+    dest: /etc/php/{{php_version }}/fpm/pool.d/www.conf
+    regexp: "^;slowlog"
+    line: "slowlog = log/$pool.log.slow"
+    state: present
+  notify: restart php-fpm
+  tags:
+    - php-fpm
+
+- name: Change php-fpm slow logging timeout
+  lineinfile:
+    dest: /etc/php/{{php_version }}/fpm/pool.d/www.conf
+    regexp: "^;request_slowlog_timeout"
+    line: "request_slowlog_timeout = 3s"
+    state: present
+  notify: restart php-fpm
+  tags:
+    - php-fpm
