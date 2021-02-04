@@ -46,11 +46,44 @@
   tags:
     - exim-filter-collectd
 
+- name: Enable php-fpm status
+  lineinfile:
+    dest: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
+    regexp: "^;pm.status_path"
+    line: "pm.status_path = /php_fpm_status"
+    state: present
+  notify: restart php-fpm
+  tags:
+    - php-fpm
+
+- name: Enable apache php-fpm config
+  file:
+    src: "/etc/apache2/conf-available/{{ item }}"
+    dest: "/etc/apache2/conf-enabled/{{ item }}"
+    state: link
+    mode: 0644
+  notify: restart apache2
+  tags:
+    - php-fpm
+
+- name: Configure php-fpm status
+  blockinfile:
+    path: /etc/apache2/conf-available/php{{ php_version }}-fpm.conf
+    block: |
+      <LocationMatch "/php_fpm_status">
+          Require ip 127.0.0.1
+          SetHandler "proxy:fcgi://127.0.0.1:9000"
+      </LocationMatch>
+    state: present
+  notify: restart php-fpm
+  tags:
+    - php-fpm
+
 - name: Enable php-fpm slow logging
   lineinfile:
     dest: /etc/php/{{php_version }}/fpm/pool.d/www.conf
     regexp: "^;slowlog"
-    line: "slowlog = log/$pool.log.slow"
+    line: "slowlog = /var/log/php7.4-fpm.$pool.log.slow"
     state: present
   notify: restart php-fpm
   tags:
