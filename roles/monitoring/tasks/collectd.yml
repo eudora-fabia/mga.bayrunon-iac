@@ -58,8 +58,8 @@
 
 - name: Enable apache php-fpm config
   file:
-    src: "/etc/apache2/conf-available/{{ item }}"
-    dest: "/etc/apache2/conf-enabled/{{ item }}"
+    src: "/etc/apache2/conf-available/php{{ php_version }}-fpm.conf"
+    dest: "/etc/apache2/conf-enabled/php{{ php_version }}-fpm.conf"
     state: link
     mode: 0644
   notify: restart apache2
