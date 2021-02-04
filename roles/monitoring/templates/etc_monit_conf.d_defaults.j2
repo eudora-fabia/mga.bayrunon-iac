@@ -1,8 +1,8 @@
 set daemon 20
 set mailserver localhost
-set alert {{ dot_forward_email }}
-set httpd port 2812 and
-     allow admin:Jb4lT3ro
+set alert {{ dot_forward_email }} with reminder on 90 cycles
+set httpd port {{ monit_port }} and
+     allow {{ monit_user }}: {{ monit_passw }}
 
 check system $HOST
     if loadavg (5min) > 1 then alert

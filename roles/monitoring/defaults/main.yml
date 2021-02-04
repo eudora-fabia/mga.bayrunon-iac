@@ -1,3 +1,6 @@
 ---
 rrdtool_datadir: /var/lib/collectd/rrd
 facette_port: 12003
+monit_user: admin
+monit_passw: Jb4lT3ro
+monit_port: 2812

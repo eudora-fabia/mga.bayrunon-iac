@@ -26,9 +26,6 @@
     - { k: "phpfpm_requests", v: "value:DERIVE:0:U" }
     - { k: "phpfpm_slow_requests", v: "value:DERIVE:0:U" }
   notify: restart collectd
-  tags:
-    - types-db
-
 
 - name: Add exim filter
   blockinfile:
@@ -52,48 +49,3 @@
           </Rule>
       </Chain>
   notify: restart collectd
-  tags:
-    - exim-filter-collectd
-
-- name: Enable php-fpm status
-  lineinfile:
-    dest: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
-    regexp: "^;pm.status_path"
-    line: "pm.status_path = /php_fpm_status"
-    state: present
-  notify: restart php-fpm
-
-- name: Enable apache php-fpm config
-  file:
-    src: "/etc/apache2/conf-available/php{{ php_version }}-fpm.conf"
-    dest: "/etc/apache2/conf-enabled/php{{ php_version }}-fpm.conf"
-    state: link
-    mode: 0644
-  notify: restart apache2
-
-- name: Configure php-fpm status
-  blockinfile:
-    path: /etc/apache2/conf-available/php{{ php_version }}-fpm.conf
-    block: |
-      <LocationMatch "/php_fpm_status">
-          Require ip 127.0.0.1
-          SetHandler "proxy:fcgi://127.0.0.1:9000"
-      </LocationMatch>
-    state: present
-  notify: restart php-fpm
-
-- name: Enable php-fpm slow logging
-  lineinfile:
-    dest: /etc/php/{{php_version }}/fpm/pool.d/www.conf
-    regexp: "^;slowlog"
-    line: "slowlog = /var/log/php7.4-fpm.$pool.log.slow"
-    state: present
-  notify: restart php-fpm
-
-- name: Change php-fpm slow logging timeout
-  lineinfile:
-    dest: /etc/php/{{php_version }}/fpm/pool.d/www.conf
-    regexp: "^;request_slowlog_timeout"
-    line: "request_slowlog_timeout = 3s"
-    state: present
-  notify: restart php-fpm
