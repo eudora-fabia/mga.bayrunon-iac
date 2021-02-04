@@ -53,8 +53,6 @@
     line: "pm.status_path = /php_fpm_status"
     state: present
   notify: restart php-fpm
-  tags:
-    - php-fpm
 
 - name: Enable apache php-fpm config
   file:
@@ -63,8 +61,6 @@
     state: link
     mode: 0644
   notify: restart apache2
-  tags:
-    - php-fpm
 
 - name: Configure php-fpm status
   blockinfile:
@@ -76,8 +72,6 @@
       </LocationMatch>
     state: present
   notify: restart php-fpm
-  tags:
-    - php-fpm
 
 - name: Enable php-fpm slow logging
   lineinfile:
@@ -86,8 +80,6 @@
     line: "slowlog = /var/log/php7.4-fpm.$pool.log.slow"
     state: present
   notify: restart php-fpm
-  tags:
-    - php-fpm
 
 - name: Change php-fpm slow logging timeout
   lineinfile:
@@ -96,5 +88,3 @@
     line: "request_slowlog_timeout = 3s"
     state: present
   notify: restart php-fpm
-  tags:
-    - php-fpm
