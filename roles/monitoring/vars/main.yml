@@ -12,3 +12,4 @@ add_graph_network_interface_in_out_bytes: "{{ lookup('template', 'facette/add_gr
 add_graph_memory_swap: "{{ lookup('template', 'facette/add_graph_memory_swap.json.j2') }}"
 add_graph_exim4: "{{ lookup('template', 'facette/add_graph_exim4.json.j2') }}"
 add_graph_apache_bayrunon_web_response_time_api: "{{ lookup('template', 'facette/add_graph_apache_bayrunon_web_response_time_api.json.j2') }}"
+add_graph_apache_bayrunon_web_http_status_api: "{{ lookup('template', 'facette/add_graph_apache_bayrunon_web_http_status_api.json.j2') }}"

@@ -4,8 +4,7 @@
     "stack_mode": null,
     "yaxis_center": true,
     "yaxis_unit": "fixed",
-    "title": "Exim4",
-    "yaxis_label": "Emails/Minute"
+    "title": "Apache Bayrunon-web API Statuses"
   },
   "template": false,
   "groups": [
@@ -14,8 +13,8 @@
         {
           "origin": "rrd",
           "source": "{{ ansible_fqdn }}",
-          "metric": "tail-exim.mail_count-defer.value",
-          "name": "Defer"
+          "metric": "tail-bayrunon-web.counter-api_status_3xx.value",
+          "name": "3xx"
         }
       ]
     },
@@ -24,8 +23,8 @@
         {
           "origin": "rrd",
           "source": "{{ ansible_fqdn }}",
-          "metric": "tail-exim.mail_count-frozen.value",
-          "name": "Frozen"
+          "metric": "tail-bayrunon-web.counter-api_status_4xx.value",
+          "name": "4xx"
         }
       ]
     },
@@ -34,11 +33,11 @@
         {
           "origin": "rrd",
           "source": "{{ ansible_fqdn }}",
-          "metric": "tail-exim.mail_count-outgoing.value",
-          "name": "Outgoing"
+          "metric": "tail-bayrunon-web.counter-api_status_5xx.value",
+          "name": "5xx"
         }
       ]
     }
   ],
-  "name": "exim4"
+  "name": "apache-bayrunon-web-http-status-api"
 }

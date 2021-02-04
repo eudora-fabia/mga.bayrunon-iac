@@ -41,16 +41,10 @@ LoadPlugin tail
     <File "/var/log/exim4/mainlog">
         Instance "exim"
         <Match>
-            Regex "<="
-            DSType "CounterInc"
-            Type "mail_count"
-            Instance "incoming"
-        </Match>
-        <Match>
             Regex "\\*\\*"
             DSType "CounterInc"
             Type "mail_count"
-            Instance "frozen"
+            Instance "bounce"
         </Match>
         <Match>
             Regex "=>"
@@ -66,16 +60,6 @@ LoadPlugin tail
         </Match>
     </File>
 
-    <File "/var/log/auth.log">
-        Instance "auth"
-        <Match>
-          Regex "\\<sshd[^:]*: Invalid user [^ ]+ from\\>"
-          DSType "CounterInc"
-          Type "counter"
-          Instance "sshd-invalid_user"
-        </Match>
-    </File>
-
     <File "/var/log/apache2/bayrunon.jimbalatero.com-access-api-req.log">
         Instance "bayrunon-web"
         <Match>
@@ -83,6 +67,28 @@ LoadPlugin tail
             DSType "GaugeAverage"
             Type "response_time"
             Instance "api"
+        </Match>
+    </File>
+
+    <File "/var/log/apache2/bayrunon.jimbalatero.com-access-api-req.log">
+        Instance "bayrunon-web"
+        <Match>
+            Regex "HTTP/.*\" (3[0-9]{2})"
+            DSType "CounterInc"
+            Type "counter"
+            Instance "api_status_3xx"
+        </Match>
+        <Match>
+            Regex "HTTP/.*\" (4[0-9]{2})"
+            DSType "CounterInc"
+            Type "counter"
+            Instance "api_status_4xx"
+        </Match>
+        <Match>
+            Regex "HTTP/.*\" (5[0-9]{2})"
+            DSType "CounterInc"
+            Type "counter"
+            Instance "api_status_5xx"
         </Match>
     </File>
 </Plugin>
