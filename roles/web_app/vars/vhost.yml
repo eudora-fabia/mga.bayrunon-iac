@@ -9,5 +9,8 @@ apache_vhosts:
     documentroot: "{{ app.documentroot }}"
     extra_parameters: |
       ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ app.documentroot }}"
+      SetEnvIf Request_URI "/api/.+" api_req
+      LogFormat "%h %l %u %t \"%r\" %>s %D" response_time
       ErrorLog ${APACHE_LOG_DIR}/{{ app.servername }}-error.log
       CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access.log combined
+      CustomLog ${APACHE_LOG_DIR}/{{ app.servername }}-access-api-req.log response_time env=api_req

@@ -1,0 +1,44 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "metric",
+    "title": "Memory Swap",
+    "yaxis_label": "Bytes"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "swap.used",
+          "name": "Used"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "swap.cached",
+          "name": "Cached"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "swap.free",
+          "name": "Free"
+        }
+      ]
+    }
+  ],
+  "name": "memory-swap"
+}

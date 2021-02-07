@@ -1,0 +1,34 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "binary",
+    "yaxis_label": "Bytes",
+    "title": "Network Interface In/Out"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "net.eth0.octets.rx",
+          "name": "Received"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "net.eth0.octets.tx",
+          "name": "Transmitted"
+        }
+      ]
+    }
+  ],
+  "name": "network-interface-in-out-bytes"
+}

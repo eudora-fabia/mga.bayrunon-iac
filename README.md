@@ -34,6 +34,10 @@ To send test email
 
 `echo "This is test mail from my machine." | mail -s Testing hello@jimbalatero.com`
 
+To view email
+
+`exim -Mvb [id]`
+
 # In newly rebuilt Cloudcone server - Ubuntu 18.04 LTS, do this first in ctrl node
 
 ```shell
@@ -69,6 +73,11 @@ sudo bash install.sh -H s02cloudcone.jimbalatero.com -p .vault_pass -e env=prod
 # ansible-playbook provision.yml
 # For some reason, jnv.debian-backports var: backports_uri doesn't work in all.yml
 ```
+
+facettectl library restore -i dump.tar.gz && sudo systemctl restart facette
+sudo rm -f /var/lib/facette/data.db && sudo systemctl restart facette
+
+sudo curl http://localhost:12003/api/v1/library/graphs
 
 # Prep the server
 

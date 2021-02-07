@@ -1,0 +1,5 @@
+check program Collectd with path "/bin/systemctl --quiet is-active collectd"
+    start program = "/etc/init.d/collectd start"
+	stop  program = "/etc/init.d/collectd stop"
+    if status != 0 then restart
+    if 2 restarts within 4 cycles then timeout

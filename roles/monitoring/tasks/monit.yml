@@ -1,12 +1,8 @@
-- name: Add monitoring vhost to apache
-  copy: src=etc_apache2_sites-available_00-status.conf dest=/etc/apache2/sites-available/00-status.conf
-
-- name: Enable the status vhost
-  command: a2ensite 00-status.conf creates=/etc/apache2/sites-enabled/00-status.conf
-  notify: restart apache
-
 - name: Install monit
   apt: pkg=monit state=present
+
+- name: Ensure monit starts on a fresh reboot
+  service: name=monit state=started enabled=yes
 
 - name: Copy monit default config
   template:
@@ -21,16 +17,15 @@
     - php{{ php_version }}-fpm
     - fail2ban
     - redis
+    - collectd
+    - facette
 
 - name: Update /etc/monit/conf-available/openssh-server
-  lineinfile:
-    dest: /etc/monit/conf-available/openssh-server
-    regexp: "   if failed host localhost port 22 with proto ssh then restart"
-    line: "   if failed host localhost port 22 with proto ssh for 2 times within 3 cycles then restart"
-    state: present
+  replace:
+    path: /etc/monit/conf-available/openssh-server
+    regexp: "if failed host localhost port 22 with proto ssh then restart"
+    replace: "if failed host localhost port 22 with proto ssh for 2 times within 3 cycles then restart"
   notify: restart monit
-  tags:
-    - update-monit-conf
 
 - name: Enable monit service config
   file:
@@ -46,5 +41,6 @@
     - php{{ php_version }}-fpm
     - fail2ban
     - apache2
-    - rsyslog
+    - collectd
+    - facette
   notify: restart monit

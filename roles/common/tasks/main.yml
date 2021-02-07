@@ -114,6 +114,7 @@
   lineinfile:
     dest: /etc/aliases
     state: present
+    regexp: "^root:"
     line: "root: {{ dot_forward_email }}"
   notify: newaliases
   tags:

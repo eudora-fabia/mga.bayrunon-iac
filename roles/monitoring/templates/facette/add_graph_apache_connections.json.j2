@@ -1,0 +1,25 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "fixed",
+    "title": "Apache Connections",
+    "yaxis_label": "Connections"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "apache.connections",
+          "name": "Connections"
+        }
+      ]
+    }
+  ],
+  "name": "apache-connections",
+  "description": "The number of connections that are being served by Apache. This is also equal to the number of busy worker threads, where ‘busy’ means any worker thread which has been started successfully and is not slated for idle cleanup."
+}

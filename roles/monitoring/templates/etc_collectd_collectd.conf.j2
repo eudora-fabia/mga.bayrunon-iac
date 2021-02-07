@@ -1,14 +1,121 @@
 BaseDir "/etc/collectd"
 
 LoadPlugin syslog
-LoadPlugin cpu
 LoadPlugin interface
 LoadPlugin load
 LoadPlugin memory
-LoadPlugin disk
 LoadPlugin df
 LoadPlugin rrdtool
+LoadPlugin apache
+LoadPlugin uptime
+LoadPlugin swap
+LoadPlugin tail
+LoadPlugin curl_json
+
+<Plugin "apache">
+   <Instance "apache80">
+       URL "http://localhost/server-status?auto"
+   </Instance>
+</Plugin>
+
+<Plugin "swap">
+    ReportIO false
+    ReportBytes true
+</Plugin>
+
+<Plugin interface>
+    Interface "lo"
+    IgnoreSelected "true"
+</Plugin>
+
+<Plugin "df">
+    IgnoreSelected false
+    MountPoint "/"
+    Interval 3600
+</Plugin>
 
 <Plugin rrdtool>
-  DataDir "/opt/collectd/var/lib/collectd/rrd"
+  DataDir "{{ rrdtool_datadir }}"
+</Plugin>
+
+<Plugin tail>
+    <File "/var/log/exim4/mainlog">
+        Instance "exim"
+        <Match>
+            Regex "\\*\\*"
+            DSType "CounterInc"
+            Type "mail_count"
+            Instance "bounce"
+        </Match>
+        <Match>
+            Regex "=>"
+            DSType "CounterInc"
+            Type "mail_count"
+            Instance "outgoing"
+        </Match>
+        <Match>
+            Regex "=="
+            DSType "CounterInc"
+            Type "mail_count"
+            Instance "defer"
+        </Match>
+    </File>
+
+    <File "/var/log/apache2/bayrunon.jimbalatero.com-access-api-req.log">
+        Instance "bayrunon-web"
+        <Match>
+            Regex "\\s([0-9]+)$"
+            DSType "GaugeAverage"
+            Type "response_time"
+            Instance "api"
+        </Match>
+    </File>
+
+    <File "/var/log/apache2/bayrunon.jimbalatero.com-access-api-req.log">
+        Instance "bayrunon-web"
+        <Match>
+            Regex "HTTP/.*\" (3[0-9]{2})"
+            DSType "CounterInc"
+            Type "counter"
+            Instance "api_status_3xx"
+        </Match>
+        <Match>
+            Regex "HTTP/.*\" (4[0-9]{2})"
+            DSType "CounterInc"
+            Type "counter"
+            Instance "api_status_4xx"
+        </Match>
+        <Match>
+            Regex "HTTP/.*\" (5[0-9]{2})"
+            DSType "CounterInc"
+            Type "counter"
+            Instance "api_status_5xx"
+        </Match>
+    </File>
+</Plugin>
+
+<Plugin curl_json>
+    <URL "http://localhost/php_fpm_status?json">
+         Instance "php-fpm"
+         <Key "accepted conn">
+             Type "phpfpm_requests"
+             Instance ""
+         </Key>
+         <Key "slow requests">
+             Type "phpfpm_slow_requests"
+             Instance ""
+         </Key>
+         <Key "listen queue">
+             Type "phpfpm_listen_queue"
+             Instance ""
+         </Key>
+         <Key "active processes">
+             Type "phpfpm_processes"
+             Instance "active"
+         </Key>
+         <Key "total processes">
+             Type "phpfpm_processes"
+             Instance "total"
+         </Key>
+    </URL>
 </Plugin>

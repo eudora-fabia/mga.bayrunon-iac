@@ -21,6 +21,8 @@ ufw_rules:
   - {rule: allow, port: 8025, src: "0.0.0.0/0", proto: tcp, direction: "in"}
   # smtp
   - {rule: allow, port: "{{smtp_port}}", src: "any", proto: tcp, direction: "out"}
+  # facette - monitoring
+  - {rule: allow, port: 12003, src: "0.0.0.0/0", proto: tcp, direction: "in"}
 
 # network configuration for our server
 interfaces_template: "interfaces-dhcp-server.j2"

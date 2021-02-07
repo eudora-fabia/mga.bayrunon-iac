@@ -1,0 +1,74 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": "normal",
+    "yaxis_center": true,
+    "yaxis_unit": "metric",
+    "title": "Memory Usage",
+    "yaxis_label": "RAM"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "memory.free",
+          "name": "Free"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "memory.used",
+          "name": "Used"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "memory.buffered",
+          "name": "Buffered"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "memory.cached",
+          "name": "Cached"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "memory.slab_recl",
+          "name": "slab_recl"
+        }
+      ]
+    },
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "memory.slab_unrecl",
+          "name": "slab_unrecl"
+        }
+      ]
+    }
+  ],
+  "name": "memory-usage"
+}

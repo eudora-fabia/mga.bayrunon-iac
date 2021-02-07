@@ -12,3 +12,40 @@
 # otherwise we'd use enabled=yes in previous task
 - name: Ensure collectd is enabled
   command: update-rc.d collectd enable creates=/etc/rc3.d/S03collectd
+
+- name: Update types.db
+  lineinfile:
+    dest: /usr/share/collectd/types.db
+    state: present
+    line: "{{ item.k }}              {{ item.v }}"
+    insertafter: "EOF"
+  with_items:
+    - { k: "mail_count", v: "value:COUNTER:0:65535" }
+    - { k: "phpfpm_listen_queue", v: "value:GAUGE:0:65535" }
+    - { k: "phpfpm_processes", v: "value:GAUGE:0:65535" }
+    - { k: "phpfpm_requests", v: "value:DERIVE:0:U" }
+    - { k: "phpfpm_slow_requests", v: "value:DERIVE:0:U" }
+  notify: restart collectd
+
+- name: Add exim filter
+  blockinfile:
+    path: /etc/collectd/collectd.conf.d/filters.conf
+    block: |
+      PreCacheChain "PreCache"
+      LoadPlugin match_regex
+      LoadPlugin target_scale
+
+      <Chain "PreCache">
+          <Rule>
+              <Match "regex">
+                  Plugin "^tail$"
+                  PluginInstance "^exim$"
+                  Type "^mail_count$"
+                  Invert false
+              </Match>
+              <Target "scale">
+                  Factor 60
+              </Target>
+          </Rule>
+      </Chain>
+  notify: restart collectd

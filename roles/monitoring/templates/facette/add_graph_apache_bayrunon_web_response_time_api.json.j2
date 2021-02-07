@@ -1,0 +1,24 @@
+{
+  "options": {
+    "type": "area",
+    "stack_mode": null,
+    "yaxis_center": true,
+    "yaxis_unit": "duration",
+    "title": "Apache Bayrunon-web API Response Time",
+    "yaxis_unit_base": "us"
+  },
+  "template": false,
+  "groups": [
+    {
+      "series": [
+        {
+          "origin": "rrd",
+          "source": "{{ ansible_fqdn }}",
+          "metric": "tail-bayrunon-web.response_time-api.value",
+          "name": "Response Time"
+        }
+      ]
+    }
+  ],
+  "name": "apache-bayrunon-web-response-time-api"
+}

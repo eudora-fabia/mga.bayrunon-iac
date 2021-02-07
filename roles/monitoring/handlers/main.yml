@@ -3,3 +3,16 @@
 
 - name: restart collectd
   service: name=collectd state=restarted
+
+- name: restart facette
+  service: name=facette state=restarted
+
+- name: restart php-fpm
+  service:
+    name: php{{ php_version }}-fpm
+    state: restarted
+
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted
