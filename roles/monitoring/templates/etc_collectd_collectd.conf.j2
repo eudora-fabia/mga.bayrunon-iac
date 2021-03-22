@@ -28,10 +28,10 @@ LoadPlugin curl_json
     IgnoreSelected "true"
 </Plugin>
 
-<Plugin "df">
-    IgnoreSelected false
-    MountPoint "/"
-    Interval 3600
+<Plugin df>
+    # execute 'df' and check the device name
+	Device "/dev/vda1"
+	IgnoreSelected false
 </Plugin>
 
 <Plugin rrdtool>
@@ -119,3 +119,7 @@ LoadPlugin curl_json
          </Key>
     </URL>
 </Plugin>
+
+<Include "/etc/collectd/collectd.conf.d">
+        Filter "*.conf"
+</Include>
