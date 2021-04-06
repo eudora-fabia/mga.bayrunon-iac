@@ -1,6 +1,5 @@
 BaseDir "/etc/collectd"
 
-LoadPlugin syslog
 LoadPlugin interface
 LoadPlugin load
 LoadPlugin memory
@@ -11,6 +10,14 @@ LoadPlugin uptime
 LoadPlugin swap
 LoadPlugin tail
 LoadPlugin curl_json
+LoadPlugin logfile
+
+# we use this instead of syslog to prevent flooding sylog with collectd msgs
+<Plugin "logfile">
+  LogLevel "info"
+  File "/var/log/collectd.log"
+  Timestamp true
+</Plugin>
 
 <Plugin "apache">
    <Instance "apache80">
